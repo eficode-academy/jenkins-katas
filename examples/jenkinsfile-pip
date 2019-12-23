@@ -1,0 +1,72 @@
+pipeline {
+    agent  { label 'master' }
+    //agent any
+    options { skipDefaultCheckout()}
+    stages {
+        stage('pip-checkout') {
+            when {
+                branch '**/ready/*'
+            }
+            steps {
+                script { // need a script to calculate the integration master branch
+                    MASTER_BRANCH= BRANCH_NAME.split("/")[0]
+                    MASTER_BRANCH= MASTER_BRANCH.matches("w(.*)") ? MASTER_BRANCH+"/master" : "master"
+                    echo "MASTER_BRANCH: $MASTER_BRANCH"
+                }
+                //using the lockable resource plugin.
+                lock("$MASTER_BRANCH") {
+                    echo "Master: $MASTER_BRANCH"
+                    echo "Integration: $BRANCH_NAME"
+                    //Using the Pretested integration plugin to checkout out any branch in the ready namespace
+                    checkout(
+                        [$class: 'GitSCM',
+                        branches: [[name: "$BRANCH_NAME"]],
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions: [[$class: 'CleanBeforeCheckout'],
+                        pretestedIntegration(gitIntegrationStrategy: accumulated(),
+                        integrationBranch: "$MASTER_BRANCH",
+                        repoName: 'origin'),
+                        [$class: 'UserIdentity', email: 'release@praqma.net', name: 'ReleasePraqma']],
+                        submoduleCfg: [],
+                        userRemoteConfigs: [[credentialsId: 'jenkins', //remember to change credentials and url.
+                        url: 'git@github.com:Praqma/isom-test.git']]])
+
+                    // Do the build,test etc.
+                    sh'echo hello world'
+
+                    // This publishes the commit if the tests have run without errors
+                    pretestedIntegrationPublisher()
+                }
+            }
+        }
+        stage('master checkout') {
+            when {
+                 branch '**/master'
+            }
+            steps  {
+                checkout scm
+            }
+        }
+        stage('longer-running-tests'){
+            when {
+                 branch '**/master'
+            }
+            parallel {
+                stage('cl2'){steps {sh 'sleep 3'}}
+                stage('cl3'){steps {sh 'sleep 6'}}
+                stage('cl4'){steps {sh 'sleep 10'}}
+            }
+        }
+        stage('publish') {
+            when { branch '**/master' }
+            parallel {
+                stage('master-artifacts') {
+                    steps {
+                        sh'echo hello world'
+                    }
+                }
+
+            }
+        }
+    }
+}
