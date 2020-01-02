@@ -34,7 +34,7 @@ pipeline {
           }
           steps {
             unstash 'code'
-            sh 'jenkins/build-app.sh'
+            sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
           }
         }
