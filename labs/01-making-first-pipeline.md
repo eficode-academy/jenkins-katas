@@ -30,7 +30,7 @@ We are also going to try to compile our code into a binary as well.
 
 * Add a new step underneath the first one called "build app" 
 * Under settings, choose "docker" as the agent, and write that the image is going to be "gradle:jdk11"
-* Click on steps and add a step with shell script, executing `jenkins/build-app.sh`
+* Click on steps and add a step with shell script, executing `ci/build-app.sh`
 * click save
 * commit to the same branch as before called `pipeline-editor` -> click save and run
 * click on the job and observe that it runs.
@@ -38,7 +38,7 @@ We are also going to try to compile our code into a binary as well.
 If you see an output like this in the logs, then you have successfully made the assignment:
 
 ```bash
-+ jenkins/build-app.sh
++ ci/build-app.sh
 
 
 Welcome to Gradle 6.0.1!

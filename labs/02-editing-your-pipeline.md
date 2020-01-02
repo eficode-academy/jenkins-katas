@@ -71,10 +71,27 @@ We want a pipeline that on the stages looks like this:
 
 ## Test reporting
 
-TODO: add exercise
+Running a Gradle test and display the result
 
-* post steps
-* test reports
+With `Preperation` now being done, we need to build the code and store the result.
+For each of the bullit points, try to build it to make sure it works before moving to the next.
+
+### Tasks
+
+* Add a new stage in parallel to `build app`, called `test app` by copying `build app` and deleting its steps besides `unstash 'code'`
+* Call the shell script 'ci/unit-test-app.sh' to run the unit tests made
+* In order for you to get the unit tests out in the UI, add another step with the following; `junit 'app/build/test-results/test/TEST-*.xml'`
+* Click on the "Tests" tab to see
+
+## Post steps
+
+```
+    post {
+        always {
+            
+            deleteDir() /* clean up our workspace */
+        }
+```
 
 ## Environment variables and credentials
 
