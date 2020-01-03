@@ -76,7 +76,7 @@ After we have done that, we can download it under the tab called "Artifacts" aft
 * Add a new step in the `Build app` stage after the Shell script.
 * Choose the type `Archive the artifacts`, and add the path `app/build/libs/` to `Artifacts` field.
 * Click `Save` and follow same commit and run procedure as above
-* Under the job and tab called "Artifacts", you should see an artifact called "app/build/libs/app-0.1-all.jar"
+* Under the build and tab called "Artifacts", you should see an artifact called "app/build/libs/app-0.1-all.jar"
   * Note: You can also find the `pipeline.log` here. It is a total log of the whole build including all stages and steps.
 
 If you do see the artifact, then you are done with the exercise.
