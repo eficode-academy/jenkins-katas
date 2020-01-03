@@ -12,8 +12,8 @@ Make sure that you do not have anything listening on port 8080. (`docker ps` *wi
 
 ## Tasks
 
-* Fork this repository to your own github account if haven't done that already.
-* Clone the forked repository on your provided machine. 
+* Fork this repository to your own github account
+* Clone the forked repository on your provided machine
 * `cd` into the repository folder
 * Run `docker-compose up -d` to run the jenkins docker image
 * Examine that the container is starting by issuing a `docker-compose ps` and see that the state of the container is `up` like the below example
