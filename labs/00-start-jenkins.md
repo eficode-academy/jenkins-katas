@@ -52,7 +52,7 @@ jenkins_1  | *************************************************************
 
 ## Navigate to jenkins, is it working?
 
-If you see a similar message when running `docker-logs` as above, you should now be able to navigate to your Jenkins instance! Go to `http://<your-own-hostname>:8080` and you will be presented with a screen where you input the password you just copied. If you're trying this on you own computer using Docker, you'll use `localhost` as `<your-own-hostname>` otherwise for the purpose of this excercise, use the provided public hostname/ip.
+If you see a similar message when running `docker-logs` as above, you should now be able to navigate to your Jenkins instance! Go to `http://<your-own-hostname>:8080` and you will be presented with a screen where you input the password you just copied. If you're trying this on your own computer using Docker, you'll use `localhost` as `<your-own-hostname>` otherwise for the purpose of this excercise, use the provided public hostname/ip.
 
 Install suggested plugins
 
