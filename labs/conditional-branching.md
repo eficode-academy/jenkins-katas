@@ -57,5 +57,5 @@ The directive `beforeAgent true` is useful to add because Jenkins otherwise will
 
 ## Further reading
 
-* [Pipeline when conditions](https://jenkins.io/blog/2018/04/09/whats-in-declarative/#new-when-conditions)
-* [Jenkins book: When directive](https://jenkins.io/doc/book/pipeline/syntax/#when)
+* [Pipeline when conditions](https://jenkins.io/blog/2018/04/09/whats-in-declarative/#new-when-conditions) List of functions that you can use inside a `when` block. 
+* [Jenkins book: When directive](https://jenkins.io/doc/book/pipeline/syntax/#when) Description on how to use the `when` directive in a stage.
