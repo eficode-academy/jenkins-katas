@@ -1,7 +1,7 @@
 version: "3"
 services:
   jenkins:
-    build: jenkins
+    image: praqma/jenkins-kata-jenkins:latest
     user: root
     ports:
       - "8080:8080"
