@@ -16,7 +16,7 @@ Make a pipeline with the pipeline editor
 * Create a new pipeline
 * Click `GitHub` -> click on the `Create an access token here.` -> Give it a name in Github, and scroll down to click on "generate token" -> Paste the token into Jenkins and click connect -> choose your private GitHub organization -> select the forked repository and "create pipeline"
 * Make one new stage, called "say hello"
-* Add a step with the `shell script` step type, where it executes `echo "hello world"` (TODO: Not really clear on how you get here, the UI in Blue Ocean is pretty terrible when it comes to navigation)
+* Add a step with the `shell script` step type, where it executes `echo "hello world"`
 * Click save
 * Commit to new branch called `pipeline-editor` -> click save and run
 * Click on the job, observe that it runs and examine the step results
