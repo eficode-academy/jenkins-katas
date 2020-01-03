@@ -1,4 +1,4 @@
-# making your first pipeline
+# Making your first pipeline
 
 In this exercise you will:
 
@@ -12,14 +12,14 @@ Make a pipeline with the pipeline editor
 
 ### Task
 
-* Open Blue Ocean (Click the link on the left hand side that says 'Open Blue Ocenan')
+* Open Blue Ocean (Click the link on the left hand side that says 'Open Blue Ocean')
 * Create a new pipeline
-* Click `GitHub` -> click on the `Create an access token here.` -> Give it a name over at Github, and scroll down to click on "generate token" -> Paste the token into Jenkins and click connect -> choose your private GitHub organization -> select the forked repository and "create pipeline"
+* Click `GitHub` -> click on the `Create an access token here.` -> Give it a name in Github, and scroll down to click on "generate token" -> Paste the token into Jenkins and click connect -> choose your private GitHub organization -> select the forked repository and "create pipeline"
 * Make one new stage, called "say hello"
 * Add a step with the shell script, where it executes `echo "hello world"` (TODO: Not really clear on how you get here, the UI in Blue Ocean is pretty terrible when it comes to navigation)
-* click save
-* commit to new branch called `pipeline-editor` -> click save and run
-* click on the job and observe that it runs.
+* Click save
+* Commit to new branch called `pipeline-editor` -> click save and run
+* Click on the job and observe that it runs.
 
 ## Parallel execution
 
@@ -31,11 +31,11 @@ We are also going to try to compile our code into a binary as well.
 * Add a new step underneath the first one called "build app" 
 * Under settings, choose "docker" as the agent, and write that the image is going to be "gradle:jdk11"
 * Click on steps and add a step with shell script, executing `ci/build-app.sh`
-* click save
-* commit to the same branch as before called `pipeline-editor` -> click save and run
-* click on the job and observe that it runs.
+* Click save
+* Commit to the same branch as before called `pipeline-editor` -> click save and run
+* Click on the job and observe that it runs.
 
-If you see an output like this in the logs, then you have successfully made the assignment:
+If you see an output like this in the logs, then you have successfully concluded the excercise:
 
 ```bash
 + ci/build-app.sh
@@ -51,7 +51,7 @@ BUILD SUCCESSFUL in 29s
 
 ```
 
-## archiving the result
+## Archiving the result
 
 In the section above, we compiled our code into a binary, but it is not easily accessible from Jenkins interface yet.
 For that we need to "archive" it.
@@ -59,7 +59,7 @@ After we have done that, we can download it under the tab called "artifacts" aft
 
 ### Task
 
-* add a new step in the build after the Shell script
+* Add a new step in the build after the Shell script
 * Choose the type "Archive the artifacts", and add the path `app/build/libs/` to the step
 * Save, commit and run as you did in the exercise before
 * Under the job and tab called "Artifacts", you should see an artifact called "app/build/libs/app-0.1-all.jar"
