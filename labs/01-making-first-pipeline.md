@@ -1,4 +1,4 @@
-# making your first pipeline
+# Making your first pipeline
 
 In this exercise you will:
 
@@ -12,14 +12,27 @@ Make a pipeline with the pipeline editor
 
 ### Task
 
-* Open Blue Ocean (Click the link on the left hand side that says 'Open Blue Ocenan')
+* Open Blue Ocean (Click the link on the left hand side that says 'Open Blue Ocean')
 * Create a new pipeline
-* Click `GitHub` -> click on the `Create an access token here.` -> Give it a name over at Github, and scroll down to click on "generate token" -> Paste the token into Jenkins and click connect -> choose your private GitHub organization -> select the forked repository and "create pipeline"
-* Make one new stage, called "say hello"
-* Add a step with the shell script, where it executes `echo "hello world"` (TODO: Not really clear on how you get here, the UI in Blue Ocean is pretty terrible when it comes to navigation)
-* click save
-* commit to new branch called `pipeline-editor` -> click save and run
-* click on the job and observe that it runs.
+* Connect to GitHub
+  * Click `GitHub`
+  * Click `Create an access token here`.
+  * You are now in GitHub
+    * Give it a name
+    * Scroll down and click on `generate token`
+    * Copy the token ( via icon )
+  * Go back to your Jenkins server
+  * Paste the token into Jenkins and click `Connect`
+  * Choose the GitHub organization that has the forked repository.
+  * Select the forked repository and `Create pipeline`.
+* Make a new stage, called `Say Hello` ( Hint: the `(+)` sign )
+* Add a step to the added stage
+  * Click `Add step` and select `Shell Script`,
+  * Copy-Paste `echo "hello world"` into the text field
+  * Click `Save`
+* Commit to a new branch called `pipeline-editor` -> click `Save & Run`
+* Please observe that it runs the stage and step.
+  * Note: the `Check out from version control` step was already added when it was connected to GitHub repository.
 
 ## Parallel execution
 
@@ -28,14 +41,15 @@ We are also going to try to compile our code into a binary as well.
 
 ### Task
 
-* Add a new step underneath the first one called "build app" 
-* Under settings, choose "docker" as the agent, and write that the image is going to be "gradle:jdk11"
-* Click on steps and add a step with shell script, executing `ci/build-app.sh`
-* click save
-* commit to the same branch as before called `pipeline-editor` -> click save and run
-* click on the job and observe that it runs.
+* Click on the `Build` ( that ran the `pipeline-editor` branch )
+* Click the `pen` ( `edit`) in upper right corner
+* Add a new stage underneath the first one called "build app"
+* Under `settings` (lower right corner ), choose `docker` as the agent, and write `gradle:jdk11` in the image.
+* Add a shell script step which execute this: `ci/build-app.sh`
+* As part of the parallel stage creation the `Say Hello` stage name is also used as the parent stage name. Please rename the parent stage to `Parallel execution` by click the `Say Hello` under the six dots and change the stage name accordingly.
+* Click `Save` and follow same commit and run procedure as above.
 
-If you see an output like this in the logs, then you have successfully made the assignment:
+If you see an output like this in the logs, then you have successfully concluded the excercise:
 
 ```bash
 + ci/build-app.sh
@@ -51,22 +65,23 @@ BUILD SUCCESSFUL in 29s
 
 ```
 
-## archiving the result
+## Archiving the result
 
 In the section above, we compiled our code into a binary, but it is not easily accessible from Jenkins interface yet.
 For that we need to "archive" it.
-After we have done that, we can download it under the tab called "artifacts" after each successfull build.
+After we have done that, we can download it under the tab called "Artifacts" after each successful build.
 
 ### Task
 
-* add a new step in the build after the Shell script
-* Choose the type "Archive the artifacts", and add the path `app/build/libs/` to the step
-* Save, commit and run as you did in the exercise before
+* Add a new step in the `Build app` stage after the Shell script.
+* Choose the type `Archive the artifacts`, and add the path `app/build/libs/` to `Artifacts` field.
+* Click `Save` and follow same commit and run procedure as above
 * Under the job and tab called "Artifacts", you should see an artifact called "app/build/libs/app-0.1-all.jar"
+  * Note: You can also find the `pipeline.log` here. It is a total log of the whole build including all stages and steps.
 
 If you do see the artifact, then you are done with the exercise.
 
-> Tip: If you want to see the pipeline that was run, click on the job in Blue Ocean view and press Ctrl+S, and Jenkins will display the whole pipeline for you, where you also can make changes and let them reload back to the UI.
+> Tip: If you want to see the pipeline that was run, click on the build in Blue Ocean view and press Ctrl+S, and Jenkins will display the whole pipeline for you, where you also can make changes and let them reload back to the UI.
 
 ## Further reading
 
