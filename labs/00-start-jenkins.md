@@ -14,8 +14,8 @@ Make sure that you do not have anything listening on port 8080. (*docker ps will
 ## Tasks
 
 * Fork the repository to your own github account if haven't done that already.
-* Clone the forked repository on your provided machine. 
-* `cd` into the repository folder
+* Clone the forked repository on your machine. (If you are using a provided instance, clone the same repository down to your machine as well).
+* On the instance `cd` into the repository folder
 * Run `docker-compose up -d` to run the jenkins docker image
 * Examine that the container is starting by issuing a `docker-compose ps` and see that the state of the container is `up` like the below example
 
@@ -53,7 +53,7 @@ jenkins_1  | *************************************************************
 
 ## Navigate to jenkins, is it working?
 
-If you see a similar message when running `docker-logs` as above, you should now be able to navigate to your Jenkins instance! Go to `http://<your-own-hostname>:8080` and you will be presented with a screen where you input the password you just copied. If you're trying this on you own computer using docker, you'll use `localhost` as `<your-own-hostname>` otherwise for the purpose of this excercise, use the provided public hostname/ip.
+If you see a similar message when running `docker-logs` as above, you should now be able to navigate to your Jenkins instance! Go to `http://<your-instance-hostname>:8080` and you will be presented with a screen where you input the password you just copied. If you're trying this on you own computer using docker, you'll use `localhost` as `<your-own-hostname>` otherwise for the purpose of this excercise, use the provided public hostname/ip.
 
 Install suggested plugins
 
