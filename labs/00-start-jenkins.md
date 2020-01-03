@@ -1,21 +1,21 @@
 # Create and setup a Jenkins server
 
-In this exercise you will:
 
 ## Initial start
 
 In order for us to start using Jenkins, we need a Jenkins server.
 Most Linux distributions have it in their own package repository, or you can download it directly from [Jenkins.io](https://jenkins.io/download/).
 
-In this exercises, we are going to spin up a Jenkins instance through [Docker](https://www.docker.com/) and docker-compose.
+In this exercise, we are going to spin up a Jenkins instance through [Docker](https://www.docker.com/) and docker-compose.
 
 Make sure that you do not have anything listening on port 8080, in case there are any existing docker container from other exercises. (*docker ps will help you see if any containers is ocupying the port*)
 
 ## Tasks
 
 * Fork the repository to your own github account.
-* Clone the forked repository on your provided ubuntu cloud machine.
-* `cd` into the repository folder
+* Clone the forked repository on your machine. (If you are using a provided instance, clone the same repository down to your machine as well).
+* On the instance `cd` into the repository folder
+
 * Run `docker-compose up -d` to run the jenkins docker image
 * Examine that the container is starting by issuing a `docker-compose ps` and see that the state of the container is `up` like the below example
 
@@ -23,7 +23,7 @@ Make sure that you do not have anything listening on port 8080, in case there ar
 $ docker-compose ps
            Name                          Command               State                                    Ports
 -----------------------------------------------------------------------------------------------------------------------------------------------
-jenkins-micronaut_jenkins_1   /sbin/tini -- /usr/local/b ...   Up      0.0.0.0:50000->50000/tcp, 0.0.0.0:8080->8080/tcp, 0.0.0.0:8443->8443/tcp
+jenkins-katas_jenkins_1   /sbin/tini -- /usr/local/b ...   Up      0.0.0.0:50000->50000/tcp, 0.0.0.0:8080->8080/tcp, 0.0.0.0:8443->8443/tcp
 ```
 
 ## Setup your jenkins
@@ -32,7 +32,7 @@ Next step is to perform the initial Jenkins configuration, in order to do that w
 
 `docker-compose logs -f <container name>`
 
-This password needs to be copied, as we will be using it soon, the password is unique for each installation, in our case and in this example the pasword is `b294a570736d4f06a5a5b0157e611b1f`. Yours will be different.
+This password needs to be copied, as we will be using it soon, the password is unique for each installation, in our case and in this example the password is `b294a570736d4f06a5a5b0157e611b1f`. Yours will be different.
 
 ![Welcome page](../img/unlock-jenkins.png)
 
