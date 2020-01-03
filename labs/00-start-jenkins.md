@@ -22,7 +22,7 @@ Make sure that you do not have anything listening on port 8080. (`docker ps` *wi
 $ docker-compose ps
            Name                          Command               State                                    Ports
 -----------------------------------------------------------------------------------------------------------------------------------------------
-jenkins-micronaut_jenkins_1   /sbin/tini -- /usr/local/b ...   Up      0.0.0.0:50000->50000/tcp, 0.0.0.0:8080->8080/tcp, 0.0.0.0:8443->8443/tcp
+jenkins-katas_jenkins_1   /sbin/tini -- /usr/local/b ...   Up      0.0.0.0:50000->50000/tcp, 0.0.0.0:8080->8080/tcp, 0.0.0.0:8443->8443/tcp
 ```
 
 ## Setup your jenkins
