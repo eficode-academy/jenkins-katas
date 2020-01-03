@@ -12,11 +12,13 @@ Manage jenkins, manage nodes, new node, permanent agent
 
 ![Adding a new agent](../img/new-agent.png)
 
-Root dir: /tmp/jenkins
+Remote root directory: /tmp/jenkins
 
 Host Key Verification Strategy: non verifying verification strategy
 
-IP: 172.17.0.1
+Host: 172.17.0.1 - Note: This ip-address is always the host ip-address from within the docker network. It is *not* the local instance IP
+
+Label: host
 
 Add credentials
 
@@ -28,7 +30,7 @@ credentials
 
 NB! Remember to install JAVA on the host: `sudo apt update && sudo apt install -y openjdk-11-jdk`
 
-## Choosing who to run your code
+## Choosing which agent to run your pipeline
 
 ### task
 
@@ -36,15 +38,15 @@ Replace `agent any` in your pipeline with the following:
 
 ```Jenkins
     agent {
-        label 'Host'
+        label 'host'
     }
 ```
 
-Run it, and see that the workspace it runs from is the following:
+Run it, and examine the pipeline.log (under Artifacts) to see that the workspace it runs from is the following:
 
 ``` logs
 [Pipeline] node
-Running on Host in /tmp/jenkins/workspace/jenkins-intro
+Running on Host in /tmp/jenkins/workspace/jenkins-katas_pipeline-editor
 [Pipeline] {
 ```
 
