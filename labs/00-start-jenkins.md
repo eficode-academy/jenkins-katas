@@ -8,7 +8,7 @@ Most Linux distributions have it in their own package repository, or you can dow
 
 In this exercise, we are going to spin up a Jenkins instance through [Docker](https://www.docker.com/) and docker-compose.
 
-Make sure that you do not have anything listening on port 8080, in case there are any existing docker container from other exercises. (*docker ps will help you see if any containers is ocupying the port*)
+Make sure that you do not have anything listening on port 8080, in case there are any existing docker container from other exercises. (*docker ps will help you see if any container is occupying the port*)
 
 ## Tasks
 
@@ -53,11 +53,11 @@ jenkins_1  | *************************************************************
 
 ## Navigate to jenkins, is it working?
 
-If you see a similar message when running `docker-logs` as above, you should now be able to navigate to your Jenkins instance! Go to `http://<your-hostname>:8080` and you will be presented with a screen where you input the password you just copied. If you're trying this on you own computer using docker, you'll use `localhost` as `<your-hostname>` otherwise for the purpose of this excercise, use the provided public hostname/ip.
+If you see a similar message when running `docker logs` as above, you should now be able to navigate to your Jenkins instance! Go to `http://<your-hostname>:8080` and you will be presented with a screen where you input the password you just copied. If you're trying this on you own computer using docker, you'll use `localhost` as `<your-hostname>` otherwise for the purpose of this excercise, use the provided public hostname/ip.
 
 On the following screen select `Install Selected Plugins`.
 
-Create the first Admin User, remember/write down the username and password, as we will use it througout the day.
+Create the first Admin User, remember/write down the username and password, as we will use it throughout the day.
 Save and finish.
 
 Next you'll need to input your correct Jenkins url. The correct hostname should be selected by default, but if not use the hostname you were provided. If you are trying this at home on your local pc use `localhost` instead, like: `http://localhost:8080`.
