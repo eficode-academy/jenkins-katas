@@ -29,7 +29,7 @@ Currently the Replay feature is not available using the Blue Ocean ui, so we use
 * In the upper right corner click the 'exit' icon labelled 'Go to classic'.
 * You should now have a different ui showing the same build.
 * Click **Replay** in the left menu.
-* You can now make changes to the pipeline code. 
+* You can now make changes to the pipeline code.
 * Make modifications to the buttom of the `build app` stage: first list the contents of the workspace, then use the `deleteDir()` keyword to delete the workspace, and finally list the content again after the deletion, to verify that they were deleted.
     * If you get stuck figuring out the declarative syntax, see the folloing section `Getting help from Jenkins`.
 * Click **Run**.
@@ -87,7 +87,7 @@ For each of the bullet points, try to build it to make sure it works before movi
 * Add a new stage in parallel to `build app`, called `test app` by copying `build app` and deleting its steps besides `unstash 'code'`
 * Call the shell script 'ci/unit-test-app.sh' to run the unit tests made
 * In order for you to get the unit tests out in the UI, add another step with the following; `junit 'app/build/test-results/test/TEST-*.xml'`
-* Click on the "Tests" tab to see
+* Click on the "Tests" tab to see the result
 
 ## Post steps
 
@@ -99,9 +99,3 @@ For each of the bullet points, try to build it to make sure it works before movi
         }
 ```
 
-## Environment variables and credentials
-
-TODO: add exercise
-
-* credentials
-* env variable
