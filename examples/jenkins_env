@@ -1,0 +1,8 @@
+pipeline {
+  agent any
+  stages {
+    stage('Using environment variables') {
+        echo "Running ${env.BUILD_ID} on ${env.NODE_NAME}"
+    }
+  }
+}

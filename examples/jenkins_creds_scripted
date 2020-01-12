@@ -1,0 +1,17 @@
+pipeline {
+   agent any
+   stages {
+      stage('Docker login') {
+        steps { //Loggin into docker in the block.
+            withCredentials([usernamePassword(credentialsId: 'docker_login', passwordVariable: 'dpass', usernameVariable: 'duser')]) {
+                sh 'echo "$dpass" | docker login -u "$duser" --password-stdin'
+                sh 'echo "$duser"' //Username will be obfuscated
+            }
+            //The agent is still logged into docker, but the credentials are not avaliable anymore
+            sh 'docker login'
+            sh 'echo "$duser"' //variable is not pressent anymore
+            sh 'docker ps'
+         }
+      }
+   }
+}

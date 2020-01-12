@@ -1,12 +1,30 @@
 # Conditional branching
 
-![alt](../img/conditional-pipeline.png)
+![alt](../img/jenkins-condition.png)
 
-It may be that you're only interested in running a stage when a condition is met, e.g., you may only be interested in building the application on the `master` branch.  
+It may be that you're only interested in running a stage when a condition is met, e.g., you may only be interested in building the application on the `master` branch.
+
+In the example above and this exercise, we only want to push the images build from `master` branch.
 
 ## When directive
 
-Jenkins adds the [`when` directive](https://jenkins.io/doc/book/pipeline/syntax/#when) that you can use inside a stage.
+Jenkins adds the [`when` directive](https://jenkins.io/doc/book/pipeline/syntax/#when) that you can use inside a stage to decide when the given step should be run.
+
+
+
+``` Jenkinsfile
+        stage('Master branch build') {
+          when { branch "master" }
+          steps {
+            sh 'Echo "On master branch"'
+          }
+        }
+```
+
+### Tasks
+
+* 
+
 
 ## PR based
 
@@ -21,18 +39,6 @@ There are some functions that you can use in the declarative pipeline.
         }
 ```
 
-## Branches
-
-It's also possible to run stages on a specific branch.
-
-```
-        stage('Master branch build') {
-          when { branch "master" }
-          steps {
-            sh 'Echo "On master branch"'
-          }
-        }
-```
 
 ## Agent based conditions
 
@@ -59,3 +65,4 @@ The directive `beforeAgent true` is useful to add because Jenkins otherwise will
 
 * [Pipeline when conditions](https://jenkins.io/blog/2018/04/09/whats-in-declarative/#new-when-conditions) List of functions that you can use inside a `when` block. 
 * [Jenkins book: When directive](https://jenkins.io/doc/book/pipeline/syntax/#when) Description on how to use the `when` directive in a stage.
+* [An end to end tutorial](https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/#end-to-end-multibranch-pipeline-project-creation) on a multibranch project usin NodeJS

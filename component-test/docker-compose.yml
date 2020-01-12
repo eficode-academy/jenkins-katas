@@ -1,10 +1,10 @@
 version: '3.7'
 services:
-  sut:
+  test:
     build: component-test
     environment:
       SERVICE_URL: http://web:8000
     depends_on:
       - web
   web:
-    build: app
+    image: ${docker_username}micronaut-app:latest
