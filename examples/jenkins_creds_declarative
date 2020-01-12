@@ -1,0 +1,13 @@
+pipeline {
+   agent any
+   stages {
+      stage('Docker login') {
+         environment {
+                DCREDS = credentials('docker_login')
+            }
+        steps { //Loggin into docker in the block.
+                sh 'echo "$DCREDS_PSW" | docker login -u "$DCREDS_USR" --password-stdin'
+            }
+      }
+   }
+}
