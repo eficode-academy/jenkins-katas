@@ -14,7 +14,7 @@ In order to do that, we need to set up a username and password credentials for t
 * Click `(global)` and `Add credentials`
 * Choose Kind "Username with password"
 * Type in your username and password
-* In the ID section, call it "docker-login". This is the ID you will refference back in your pipeline afterwards.
+* In the ID section, call it "docker_login". This is the ID you will refference back in your pipeline afterwards.
 * Click OK.
 
 ## Adding docker push to your pipeline
@@ -48,7 +48,7 @@ steps {
 ```
 
 * Commit this and push it to see the result.
-* Look at the logs of the build to see the usage of credentials. Are your credentials vissible in the log?
+* Look at the logs of the build to see the usage of credentials. Are your credentials visible in the log?
 * Log into Docker hub to see if you have gotten a new repository with a micronaut-app image.
 
 > note: If you wonder why the script works, even though you do not set DOCKERCREDS_PSW directly, then look at this example and explanaition: https://jenkins.io/doc/book/pipeline/jenkinsfile/#usernames-and-passwords
