@@ -48,7 +48,7 @@ There are two different code generators in Jenkins when using the classical UI.
 
 To generate a step snippet with the Snippet Generator:
 
-* Navigate to the Pipeline Syntax link from a configured Pipeline, or at https://<your hostname>/pipeline-syntax.
+* Navigate to the Pipeline Syntax link from a configured Pipeline, or at http://<your hostname>/pipeline-syntax.
 * Select the desired step in the Sample Step dropdown menu
 * Use the dynamically populated area below the Sample Step dropdown to configure the selected step.
 * Click Generate Pipeline Script to create a snippet of Pipeline which can be copied and pasted into a Pipeline.

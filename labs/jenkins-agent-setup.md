@@ -6,31 +6,57 @@ In this exercise you will:
 * Set label on the agent and make sure it is used in a job
 * Set the agent offline to see the implications in a job
 
-## Tasks
+## Setting up an ssh agent
 
-Manage jenkins, manage nodes, new node, permanent agent
+When Jenkins comes up, the only thing it has is itself as both master and agent.
+
+We want to start a new agent directly on the host. Remember, Jenkins is a Docker container, running on the host.
+
+### Tasks
+
+First, we need to check if Java is installed on the machine, since Jenkins is a java application.
+
+* Run `java -version`, and see if the system returns a java version.
+    * If it does not show, run the following script to install it `sudo apt update && sudo apt install -y openjdk-11-jdk`
+
+Thereafter we need to add a new agent through the Jenkins UI:
+
+* Go to Manage jenkins -> manage nodes -> new node -> permanent agent
 
 ![Adding a new agent](../img/new-agent.png)
 
-Remote root directory: /tmp/jenkins
+On the screen, add the following:
 
-Host Key Verification Strategy: non verifying verification strategy
+* Remote root directory: /tmp/jenkins
 
-Host: 172.17.0.1 - Note: This ip-address is always the host ip-address from within the docker network. It is *not* the local instance IP
+* Label: host
 
-Label: host
+* Host: 172.17.0.1
 
-Add credentials
+> Note: This ip-address is always the host ip-address from within the docker network. It is *not* the local instance IP
+
+* Host Key Verification Strategy: non verifying verification strategy
+
+As we are using SSH, we need to add our SSH key to the host as well.
+
+* Under credentials, click add
 
 ![Adding a new cred](../img/add-cred.png)
 
-![Editing the credentials](../img/add-cred2.png)
-Assign an ID that can be used to access the credential. The Pipeline uses this ID to apply these
-credentials
+* Username: ubuntu
+* Under private key, insert the content of the private key you got from the instructor.
 
-NB! Remember to install JAVA on the host: `sudo apt update && sudo apt install -y openjdk-11-jdk`
+![Editing the credentials](../img/add-cred2.png)
+
+* Assign an ID that can be used to access the credential. The Pipeline uses this ID to apply these credentials
+
+* Click add
+
+* Click save
 
 ## Choosing which agent to run your pipeline
+
+You have now successfully set up your agent, and can use that when running your pipeline.
 
 ### task
 
@@ -60,19 +86,32 @@ If that is not the case, like cloud instances etc, it will be benneficial that t
 
 ### Tasks
 
-Install plugin
-
-
-Swarm plugin
+On your instance, download the swarm jarfile by running the following command:
 
 `wget https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/3.17/swarm-client-3.17.jar`
 
+After that, run your swarm jar file, that will contact your Jenkins server and binds itself to it. Remember to change the username and password accordingly.
+
 `java -jar swarm-client-3.17.jar -master http://172.19.0.2:8080 -username admin -password admin -labels swarm`
 
-Replace `agent any` in your pipeline with the following:
+Replace your label in the pipeline from `host` to `swarm like below`:
 
 ```Jenkins
     agent {
         label 'swarm'
     }
 ```
+
+Run it, and examine the pipeline.log (under Artifacts) to see that the workspace it runs from is the a name with praqma-training:
+
+``` logs
+[Pipeline] node
+Running on soa-instance1.c.praqma-training.internal-cc550122 in /home/ubuntu/workspace/delme_master
+[Pipeline] {
+```
+
+### Experiments
+
+* What happens if you disable or delete one of the agents? What happens to the build that should be running on that agent?
+* Can you have several agents with the same labels?
+* Can you have several agents with the same name?
