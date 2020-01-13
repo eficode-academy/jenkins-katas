@@ -164,8 +164,11 @@ node {
 }
 ```
 
+This pipeline is much harder to read. However, it saves us from writing the same piece of stage declaration many times. Imagine the length of our declarative pipeline if we had to test with 15 java versions. 
+With this script we can just add more images to the `dockerImages` map and call it a day.
+
 ### Tasks
-* `git checkout scripted-pipeline-branch`, paste the pipeline above into your Jenkinsfile, then `git add`, `git commit -m "Advanced scripted pipeline stuff"` and `git push`, to get the change to GitHub.
+* Checkout the scripted branch: `git checkout scripted-pipeline-branch`, paste the pipeline above into your Jenkinsfile, then `git add`, `git commit -m "Advanced scripted pipeline stuff"` and `git push`, to get the change to GitHub.
 * Have a look at Jenkins. Confirm that the result is identical to your declarative pipeline.
 * Think about the differences between the declarative and scripted pipelines. What are the strengths and shortcomings of each?
 
@@ -173,13 +176,14 @@ node {
 ## Good to know: Adding a script block to declarative pipelines
 There is a happy "hack" that you can use if you ever need just a little bit of script in your pipeline. You can always create a `script {}` block and write code in there, in the middle of a pipeline.
 
-Let's say we quickly want to do some advanced flow control - like a `try-catch`. We can add that to a declarative pipeline like this:
+Let's say we quickly want to do some advanced flow control - like a `try/catch`. We can add that to a declarative pipeline like this:
 ```Groovy
 pipeline {
     agent any
     stages {
         stage('get kernel') {
             steps {
+                // Use a script block to add a try/catch block
                 script {
                     try {
                         KERNEL_VERSION = sh (script: "uname -r", returnStdout: true)
