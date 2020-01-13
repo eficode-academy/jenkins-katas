@@ -53,6 +53,11 @@ steps {
 
 > note: If you wonder why the script works, even though you do not set DOCKERCREDS_PSW directly, then look at this example and explanaition: https://jenkins.io/doc/book/pipeline/jenkinsfile/#usernames-and-passwords
 
+## Extra exercise: user input
+
+Couldn't it be nice if Jenkins asked before pushing to Docker hub?
+Try to see what you can implement with the [Input step](https://jenkins.io/doc/pipeline/steps/pipeline-input-step/).
+
 ## Authenticate Jenkins to Github, the manual way
 
 > This guide is for when you cannot use the Blue Ocean way of connecting Jenkins to GitHub through access token. If you are part of a training course, this is not needed unless told otherwise.
