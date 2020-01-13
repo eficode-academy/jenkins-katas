@@ -164,8 +164,10 @@ node {
 }
 ```
 
-This pipeline is much harder to read. However, it saves us from writing the same piece of stage declaration many times. Imagine the length of our declarative pipeline if we had to test with 15 java versions. 
-With this script we can just add more images to the `dockerImages` map and call it a day.
+This pipeline is much harder to read. However, it saves us from writing the same piece of stage declaration many times. Imagine the length of our declarative pipeline if we had to test with 15 java versions. With this script we can just add more images to the `dockerImages` map and call it a day.
+
+> Good to know: The [matrix directive](https://jenkins.io/blog/2019/11/22/welcome-to-the-matrix/) will soon be added to stable Jenkins, and will make it much simpler to run the same pipeline steps with different parameters. In general, a lot of development is happening that makes declarative pipeline easier and easier to use.
+
 
 ### Tasks
 * Checkout the scripted branch: `git checkout scripted-pipeline-branch`, paste the pipeline above into your Jenkinsfile, then `git add`, `git commit -m "Advanced scripted pipeline stuff"` and `git push`, to get the change to GitHub.
