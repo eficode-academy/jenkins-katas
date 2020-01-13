@@ -62,6 +62,7 @@ If that is not the case, like cloud instances etc, it will be benneficial that t
 
 Install plugin
 
+
 Swarm plugin
 
 `wget https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/3.17/swarm-client-3.17.jar`
