@@ -109,3 +109,9 @@ Run it, and examine the pipeline.log (under Artifacts) to see that the workspace
 Running on soa-instance1.c.praqma-training.internal-cc550122 in /home/ubuntu/workspace/delme_master
 [Pipeline] {
 ```
+
+### Experiments
+
+* What happens if you disable or delete one of the agents? What happens to the build that should be running on that agent?
+* Can you have several agents with the same labels?
+* Can you have several agents with the same name?
