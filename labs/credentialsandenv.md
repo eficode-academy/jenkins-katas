@@ -34,7 +34,7 @@ In the exercise you are both going to make a global environment variable, and a 
 
 > hint: If you want to see an example on how to do this, look at this [example](https://jenkins.io/doc/book/pipeline/jenkinsfile/#setting-environment-variables).
 
-* add a **new** stage after the `build docker` stage looking like the others with the following code:
+* add a **new** stage after the `test app` stage (not in parallel) looking like the others with the following code:
 
 ``` Groovy
 environment {
@@ -42,6 +42,7 @@ environment {
 }
 steps {
       unstash 'code' //unstash the repository code
+      sh 'ci/build-docker'
       sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
       sh 'ci/push-docker.sh'
 }
