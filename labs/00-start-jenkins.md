@@ -34,8 +34,6 @@ Next step is to perform the initial Jenkins configuration, in order to do that w
 
 This password needs to be copied, as we will be using it soon, the password is unique for each installation, in our case and in this example the password is `b294a570736d4f06a5a5b0157e611b1f`. Yours will be different.
 
-![Welcome page](../img/unlock-jenkins.png)
-
 ```bash
 jenkins_1  | *************************************************************
 jenkins_1  | *************************************************************
@@ -54,6 +52,8 @@ jenkins_1  | *************************************************************
 ## Navigate to jenkins, is it working?
 
 If you see a similar message when running `docker logs` as above, you should now be able to navigate to your Jenkins instance! Go to `http://<your-hostname>:8080` and you will be presented with a screen where you input the password you just copied. If you're trying this on you own computer using docker, you'll use `localhost` as `<your-hostname>` otherwise for the purpose of this excercise, use the provided public hostname/ip.
+
+![Welcome page](../img/unlock-jenkins.png)
 
 On the following screen select `Install Suggested Plugins`.
 
