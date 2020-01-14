@@ -53,7 +53,7 @@ pipeline {
         }
 
       }
-        stage('test app') {
+        stage('push app') {
           options {
             skipDefaultCheckout()
           }
