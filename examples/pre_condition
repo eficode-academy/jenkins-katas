@@ -1,4 +1,4 @@
-ipeline {
+pipeline {
   agent any
   environment { 
         docker_username = 'praqmasofus'
