@@ -51,6 +51,8 @@ pipeline {
             junit 'app/build/test-results/test/TEST-*.xml'
           }
         }
+
+      }
         stage('test app') {
           options {
             skipDefaultCheckout()
@@ -67,8 +69,6 @@ steps {
       sh 'ci/push-docker.sh'
 }
         }
-
-      }
     }
 
   }
