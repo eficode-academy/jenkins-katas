@@ -58,6 +58,7 @@ pipeline {
         DOCKERCREDS = credentials('docker_login')
       }
       steps {
+        echo '$CHANGE_TARGET tries to integrate into $CHANGE_BRANCH'
         unstash 'code'
         sh 'ci/build-docker.sh'
         sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin'
