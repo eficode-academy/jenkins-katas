@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment { 
-        docker_username = 'praqmasofus'
+        docker_username = 'praqmasofus' //insert your own docker username here
   }
   stages {
     stage('clone down') {
@@ -26,7 +26,6 @@ pipeline {
             unstash 'code'
             sh 'ci/unit-test-app.sh'
             junit 'app/build/test-results/test/TEST-*.xml'
-            stash(excludes: '.git', name: 'code')
           }
         }
         stage('build app') {
@@ -47,17 +46,7 @@ pipeline {
         }
       }
     }
-    stage('build docker') {
-      options {
-        skipDefaultCheckout(true)
-      }
-      steps {
-        unstash 'code'
-        sh 'ci/build-docker.sh'
-      }
-    }
-    stage('push docker') {
-      when { branch 'master' }
+    stage('build and push docker') {
       options {
         skipDefaultCheckout(true)
       }
@@ -66,8 +55,8 @@ pipeline {
       }
       steps {
         unstash 'code'
-        sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin'
-        sh 'ci/push-docker.sh'
+        sh 'ci/build-docker.sh'
+        pushIfMaster() // This is a script inside a declarative pipeline
       }
     }
     stage('component test') {
@@ -80,6 +69,12 @@ pipeline {
       }
     }
 
-  }
-  
+  } 
+}
+void pushIfMaster() {
+    if (BRANCH_NAME=="master"){
+      sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin'
+      sh 'ci/push-docker.sh'
+    }
+
 }
