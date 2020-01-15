@@ -61,7 +61,7 @@ pipeline {
         echo '$CHANGE_TARGET tries to integrate into $CHANGE_BRANCH'
         unstash 'code'
         sh 'ci/build-docker.sh'
-        pushifmaster()
+        pushifmaster() // This is a script inside a declarative pipeline
       }
     }
     stage('component test') {
@@ -78,8 +78,8 @@ pipeline {
   }
   
 }
-void pushifmaster() {
-    if ($BRANCH_NAME=="master"){
+void pushIfMaster() {
+    if (BRANCH_NAME=="master"){
       sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin'
       sh 'ci/push-docker.sh'
     }
