@@ -1,8 +1,5 @@
 pipeline {
   agent any
-    triggers {
-  pollSCM 'H/2 * * * *'
-}
   environment { 
         docker_username = 'praqmasofus'
   }
@@ -58,7 +55,6 @@ pipeline {
         DOCKERCREDS = credentials('docker_login')
       }
       steps {
-        echo '$CHANGE_TARGET tries to integrate into $CHANGE_BRANCH'
         unstash 'code'
         sh 'ci/build-docker.sh'
         pushIfMaster() // This is a script inside a declarative pipeline
