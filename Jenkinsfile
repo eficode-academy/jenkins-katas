@@ -1,5 +1,8 @@
 pipeline {
   agent any
+    triggers {
+  pollSCM 'H/2 * * * *'
+}
   environment { 
         docker_username = 'praqmasofus'
   }
@@ -47,16 +50,7 @@ pipeline {
         }
       }
     }
-    stage('build docker') {
-      options {
-        skipDefaultCheckout(true)
-      }
-      steps {
-        unstash 'code'
-        sh 'ci/build-docker.sh'
-      }
-    }
-    stage('push docker') {
+    stage('build and push docker') {
       options {
         skipDefaultCheckout(true)
       }
@@ -65,11 +59,13 @@ pipeline {
       }
       steps {
         unstash 'code'
+        sh 'ci/build-docker.sh'
         sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin'
         sh 'ci/push-docker.sh'
       }
     }
     stage('component test') {
+      when { not {changeRequest() } }
       options {
         skipDefaultCheckout(true)
       }
