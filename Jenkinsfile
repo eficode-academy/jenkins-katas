@@ -61,8 +61,7 @@ pipeline {
         echo '$CHANGE_TARGET tries to integrate into $CHANGE_BRANCH'
         unstash 'code'
         sh 'ci/build-docker.sh'
-        sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin'
-        sh 'ci/push-docker.sh'
+        pushifmaster()
       }
     }
     stage('component test') {
@@ -78,4 +77,11 @@ pipeline {
 
   }
   
+}
+void pushifmaster() {
+    if ($BRANCH_NAME=="master"){
+      sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin'
+      sh 'ci/push-docker.sh'
+    }
+
 }
