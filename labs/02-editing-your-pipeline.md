@@ -84,7 +84,7 @@ For each of the bullet points, try to build it to make sure it works before movi
 
 ### Tasks
 
-* Add a new stage in parallel to `build app`, called `test app` by copying `build app` and deleting its steps besides `unstash 'code'`
+* Add a new stage in parallel to `build app`, called `test app` by copying `build app` and deleting its steps excluding `unstash 'code'`
 * Call the shell script 'ci/unit-test-app.sh' to run the unit tests made
 * In order for you to get the unit tests out in the UI, add another step with the following; `junit 'app/build/test-results/test/TEST-*.xml'`
 * Click on the "Tests" tab to see the result
