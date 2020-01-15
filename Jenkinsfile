@@ -61,7 +61,7 @@ pipeline {
         echo '$CHANGE_TARGET tries to integrate into $CHANGE_BRANCH'
         unstash 'code'
         sh 'ci/build-docker.sh'
-        pushifmaster() // This is a script inside a declarative pipeline
+        pushIfMaster() // This is a script inside a declarative pipeline
       }
     }
     stage('component test') {
