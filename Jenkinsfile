@@ -59,6 +59,9 @@ pipeline {
           options {
             skipDefaultCheckout()
           }
+          environment {
+      DOCKERCREDS = credentials('docker_login') //use the credentials just created in this stage
+}
           steps {
             unstash 'codeNbin'
             sh 'ci/build-docker.sh'
