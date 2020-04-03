@@ -34,7 +34,7 @@ In the exercise you are both going to make a global environment variable, and a 
 
 > hint: If you want to see an example on how to do this, look at this [example](https://jenkins.io/doc/book/pipeline/jenkinsfile/#setting-environment-variables).
 
-* add a **new** stage after the `test app` stage (not in parallel) looking like the others with the following code:
+* add a **new** stage after the `test app` stage (not in parallel) called `push docker app`. It should look like the others with the following code:
 
 ``` Groovy
 environment {
