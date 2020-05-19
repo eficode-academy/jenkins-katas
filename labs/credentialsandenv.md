@@ -14,12 +14,12 @@ In order to do that, we need to set up a username and password credentials for t
 * Click `(global)` and `Add credentials`
 * Choose Kind "Username with password"
 * Type in your username and password
-* In the ID section, call it "docker_login". This is the ID you will refference back in your pipeline afterwards.
+* In the ID section, call it "docker_login". This is the ID you will reference back in your pipeline afterwards.
 * Click OK.
 
 ## Adding docker push to your pipeline
 
-We want our pipeline to push our new docker image up to dockerhub everytime we push a new set of commits.
+We want our pipeline to push our new docker image up to dockerhub every time we push a new set of commits.
 For this we need to use the credentials just made.
 Our scripts needs two things:
 
