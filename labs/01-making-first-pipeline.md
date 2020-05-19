@@ -30,7 +30,7 @@ Make a pipeline with the pipeline editor
   * Click `Add step` and select `Shell Script`,
   * Copy-Paste `echo "hello world"` into the text field
   * Click `Save`
-* Commit to a new branch called `pipeline-editor` -> click `Save & Run`
+* Choose Commit to master -> click `Save & Run`
 * Please observe that it runs the stage and step.
   * Note: the `Check out from version control` step was already added when it was connected to GitHub repository.
 
@@ -41,7 +41,7 @@ We are also going to try to compile our code into a binary as well.
 
 ### Task
 
-* Click on the `Build` ( that ran the `pipeline-editor` branch )
+* Click on the `Build` 
 * Click the `pen` ( `edit`) in upper right corner
 * Add a new stage underneath the first one called "build app"
 * Under `settings` (lower right corner ), choose `docker` as the agent, and write `gradle:jdk11` in the image.
