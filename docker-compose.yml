@@ -1,16 +1,22 @@
-version: "3"
+version: '3.3'
 services:
   jenkins:
     image: praqma/jenkins-kata-jenkins:latest
     user: root
     ports:
-      - "8080:8080"
-      - "8443:8443"
-      - "50000:50000"
+      - 8080:8080
+      - 50000:50000
     volumes:
-      - jenkins_data:/var/jenkins_home
-      - jenkins_home:/home
+      - jenkins_home:/var/jcasc/jenkins_home
+      - ./casc-config:/var/jcasc/jenkins_config
       - /var/run/docker.sock:/var/run/docker.sock
+    environment: 
+      - CASC_JENKINS_CONFIG=/var/jcasc/jenkins_config
+    secrets:
+      - adminpw
+
+secrets:
+  adminpw:
+    file: ./secret/admin.txt
 volumes:
-      jenkins_data:
-      jenkins_home:
+  jenkins_home:
