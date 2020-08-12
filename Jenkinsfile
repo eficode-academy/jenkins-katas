@@ -26,4 +26,11 @@ pipeline {
     }
 
   }
+  post {
+      always {
+          sh 'ls'
+          deleteDir()
+          sh 'ls'
+      }
+  }
 }
