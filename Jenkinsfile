@@ -44,7 +44,11 @@ pipeline {
         }
     }
     stage('component test') {
-      when {branch !"dev*"}
+      when {
+        expression {
+          !env.BRANCH_NAME.contains("dev/")
+        }
+      }
       steps {
         unstash 'binaries'
         sh 'ci/component-test.sh'
