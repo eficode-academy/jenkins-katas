@@ -52,7 +52,7 @@ pipeline {
         DOCKERCREDS = credentials('docker_login')
       }
       steps {
-        sh 'ci/build-docker-sh'
+        sh 'ci/build-docker.sh'
         sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin'
       }
     }
