@@ -8,8 +8,12 @@ pipeline {
         steps {
           node {
             label 'host'
-            stash excludes '.git' name 'code'
           }
+          stash (
+            excludes: '.git',
+            name: 'code'
+          )
+            
         }
       } 
       stage('Parallel execution') {
@@ -44,6 +48,7 @@ pipeline {
           always {
               deleteDir() /* clean up our workspace */
           }
+        }
       }
       stage('push docker app'){
         environment {
