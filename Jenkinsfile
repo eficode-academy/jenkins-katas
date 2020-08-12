@@ -69,6 +69,15 @@ steps {
       sh 'ci/push-docker.sh'
 }
     }
+      stage('component test') {
+      options {
+        skipDefaultCheckout(true)
+      }
+      steps {
+        unstash 'code'
+        sh 'ci/component-test.sh'
+      }
+    }
 
   }
 }
