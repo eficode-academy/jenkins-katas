@@ -14,13 +14,29 @@ pipeline {
             docker {
               image 'gradle:jdk11'
             }
+
+          }
+          environment {
+            skipDefaultCheckout = 'true'
           }
           steps {
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
             sh 'ls'
-              deleteDir()
+            deleteDir()
             sh 'ls'
+          }
+        }
+
+        stage('') {
+          agent {
+            node {
+              label 'host'
+            }
+
+          }
+          steps {
+            stash(name: 'code', excludes: '.git')
           }
         }
 
