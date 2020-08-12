@@ -49,7 +49,9 @@ pipeline {
     }
 
     stage('push docker app') {
-      when { branch "master" }
+      when {
+        branch 'master'
+      }
       environment {
         DOCKERCREDS = credentials('docker_login')
       }
@@ -60,13 +62,18 @@ pipeline {
         sh 'ci/push-docker.sh'
       }
     }
-    
+
     stage('Component Test') {
       agent {
-        docker "gradle:jdk11"
+        docker 'gradle:jdk11'
       }
-      when { not {branch "dev/"}
-        beforeAgent true}
+      when {
+        beforeAgent true
+        not {
+          branch 'dev/'
+        }
+
+      }
       steps {
         sh 'ci/component-test.sh'
       }
