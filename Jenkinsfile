@@ -1,8 +1,8 @@
 pipeline {
   agent any
    environment {
-      docker_username = praqmasofus
-}
+      docker_username = 'praqmasofus'
+    }
   
   stages {
     stage('Clone down'){
