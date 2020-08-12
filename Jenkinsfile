@@ -81,7 +81,6 @@ pipeline {
           steps {
             unstash 'code'
             sh 'ci/component-test.sh'
-            junit 'app/build/test-results/test/TEST-*.xml'
           }
         }
   }
