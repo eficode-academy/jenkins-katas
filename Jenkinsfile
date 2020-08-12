@@ -83,6 +83,10 @@ pipeline {
         stage('Component Test') {
           when { 
             changeRequest()
+            anyOf {
+              branch 'dev/*';
+              branch 'master'
+            }
             }
           steps {
             sh 'ci/component-test.sh'
