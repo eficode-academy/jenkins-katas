@@ -83,6 +83,7 @@ pipeline {
             }
           steps {
             sh 'ci/component-test.sh'
+            sh 'echo done'
           }
         }
       }
