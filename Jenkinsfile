@@ -52,7 +52,9 @@ pipeline {
         }
       }
     }
+
     stage('push docker app') {
+      when { branch "master" }
       options {
         skipDefaultCheckout()
       }
@@ -64,6 +66,20 @@ pipeline {
         sh 'ci/build-docker.sh'
         sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
         sh 'ci/push-docker.sh'
+      }
+    }
+
+    stage('Component test') {
+      when { 
+        not {
+          branch 'dev/*'
+        }
+      }
+      options {
+        skipDefaultCheckout()
+      }
+      steps {
+        sh 'ci/component-test.sh'
       }
     }
   }
