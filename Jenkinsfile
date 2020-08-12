@@ -1,10 +1,5 @@
 pipeline {
   agent any
-
-  environment {
-    docker_username = 'mifor16'
-  }
-
   stages {
     stage('Clone Down') {
       steps {
@@ -58,9 +53,8 @@ pipeline {
       }
     }
 
-
-
-
   }
-  
+  environment {
+    docker_username = 'mifor16'
+  }
 }
