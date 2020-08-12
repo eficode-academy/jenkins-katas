@@ -72,7 +72,21 @@ pipeline {
         unstash 'code' //unstash the repository code
         sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
         sh 'ci/push-docker.sh'
+        stash excludes: '.git', name: 'code'
       }
     }
+
+    stage('Test App') {
+          agent {
+            docker {
+              image 'gradle:jdk11'
+            }
+          }
+          steps {
+            unstash 'code'
+            sh 'ci/component-test.sh'
+            junit 'app/build/test-results/test/TEST-*.xml'
+          }
+        }
   }
 }
