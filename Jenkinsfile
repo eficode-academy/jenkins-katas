@@ -85,6 +85,7 @@ pipeline {
       steps {
         sh 'ci/component-test.sh'
       }
+      
     }
   }
 
