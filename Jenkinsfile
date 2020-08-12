@@ -49,7 +49,7 @@ pipeline {
             }
             steps {
               unstash 'code'
-              sh \'ci/unit-test-app.sh\''
+              sh 'ci/unit-test-app.sh'
               junit 'app/build/test-results/test/TEST-*.xml'
             }
             post {
