@@ -47,5 +47,15 @@ pipeline {
       }
     }
 
+    stage('push docker app') {
+      environment {
+        DOCKERCREDS = credentials('docker_login')
+      }
+      steps {
+        sh 'ci/build-docker-sh'
+        sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin'
+      }
+    }
+
   }
 }
