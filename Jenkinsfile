@@ -41,6 +41,7 @@ pipeline {
             unstash 'code'
             sh 'ci/unit-test-app.sh'
             junit 'app/build/test-results/test/TEST-*.xml'
+            stash 'code'
           }
         }
 
