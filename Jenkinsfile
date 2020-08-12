@@ -2,7 +2,7 @@ pipeline {
   agent any
     environment {
       docker_username='mathn16'
-    }
+     }
   stages {
     stage('Parallel execution') {
       parallel {
