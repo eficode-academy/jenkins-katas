@@ -73,7 +73,8 @@ pipeline {
         }
       }
       steps {
-        echo "Component testing!"
+        unstash 'allmyfilesyolo'
+        sh 'ci/component-test.sh'
       }
     }
   }
