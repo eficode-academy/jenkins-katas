@@ -9,7 +9,7 @@ pipeline {
         node {
           label 'host'
         }
-        stash exclude '.git', name 'code'
+        stash excludes '.git', name 'code'
       }
     } 
     stage('Parallel execution') {
