@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  options {
-    skipDefaultCheckout true
-  }
   stages {
     stage('Clone down') {
       steps {
@@ -22,6 +19,9 @@ pipeline {
             docker {
               image 'gradle:jdk11'
             }
+          }
+          options {
+            skipDefaultCheckout()
           }
           steps {
             unstash 'allmyfilesyolo'
@@ -50,7 +50,7 @@ pipeline {
   }
   post {
     always {
-        deleteDir() /* clean up our workspace */
+      deleteDir() /* clean up our workspace */
     }
   }
 }
