@@ -65,7 +65,10 @@ pipeline {
 
     stage('Component Test') {
       agent {
-        docker 'gradle:jdk11'
+        docker {
+          image 'gradle:jdk11'
+        }
+
       }
       when {
         beforeAgent true
