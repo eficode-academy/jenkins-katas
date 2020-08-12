@@ -13,7 +13,6 @@ pipeline {
             sh 'echo "hello world"'
           }
         }
-
         stage('build app') {
           agent {
             docker {
@@ -32,7 +31,19 @@ pipeline {
             sh 'ls'
           }
         }
-
+        stage('test app') {
+          agent {
+            docker {
+              image 'gradle:jdk11'
+            }
+          }
+          options {
+            skipDefaultCheckout()
+          }
+          steps {
+            unstash 'code'
+          }
+        }
       }
     }
 
