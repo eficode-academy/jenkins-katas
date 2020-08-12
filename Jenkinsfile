@@ -27,7 +27,7 @@ pipeline {
             unstash 'code'
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
-            stash 'pushcode'
+            stash(name: 'pushcode', excludes: '.git')
           }
         }
 
