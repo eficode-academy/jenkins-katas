@@ -85,7 +85,7 @@ pipeline {
             changeRequest()
             }
           steps {
-            sh 'ci/component-t__est.sh'
+            sh 'ci/component-test.sh'
             sh 'echo done'
           }
         }
