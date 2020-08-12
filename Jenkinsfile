@@ -18,7 +18,6 @@ pipeline {
           agent {
             docker {
               image 'gradle:jdk11'
-              args 'ci/build-app.sh'
             }
 
           }
