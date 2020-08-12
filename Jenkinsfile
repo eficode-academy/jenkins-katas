@@ -78,10 +78,15 @@ pipeline {
 
     stage('Component Test') {
           agent any
-          when {
-            not {
-              branch 'dev/*'
-            }
+          //when {
+          //  not {
+          //    branch 'dev/*'
+          //  }
+          //}
+          when { 
+            anyOf { 
+              branch 'master'; changeRequest() 
+              } 
           }
           steps {
             unstash 'code'
