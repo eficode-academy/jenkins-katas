@@ -1,6 +1,13 @@
 pipeline {
   agent any
   stages {
+    stage('Clone Down') {
+      steps {
+        sh 'echo "yellow ornage"'
+        stash(excludes: '.git/**', name: 'code')
+      }
+    }
+
     stage('Parallel Execution') {
       parallel {
         stage('Say Hello') {
@@ -17,6 +24,7 @@ pipeline {
 
           }
           steps {
+            unstash 'code'
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
           }
@@ -25,5 +33,8 @@ pipeline {
       }
     }
 
+  }
+  options {
+    skipDefaultCheckout(true)
   }
 }
