@@ -18,15 +18,10 @@ pipeline {
           }
           steps {
             sh 'ci/build-app.sh'
+            archiveArtifacts 'app/build/libs/'
           }
         }
 
-      }
-    }
-
-    stage('Archive') {
-      steps {
-        archiveArtifacts 'app/build/libs/'
       }
     }
 
