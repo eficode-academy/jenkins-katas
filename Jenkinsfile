@@ -30,7 +30,10 @@ pipeline {
     }
     stage('docker push app'){
       when {
-        branch "master"
+        anyOf {
+          branch "master";
+          changeRequest()
+        }
       }
         environment {
           DOCKERCREDS = credentials('docker_login')
