@@ -18,6 +18,9 @@ pipeline {
           }
           steps {
             sh 'ci/build-app.sh'
+            sh 'ls'
+            deleteDir()
+            sh 'ls'
           }
         }
 
