@@ -41,6 +41,10 @@ pipeline {
               image 'gradle:jdk11'
             }
           }
+          when {
+            beforeAgent true
+            branch 'master'
+          }
           options {
             skipDefaultCheckout()
           }
