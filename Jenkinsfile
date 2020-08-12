@@ -1,4 +1,8 @@
+
 pipeline {
+  environment {
+    docker_username = 'emilkolvigraun'
+  }
   agent any
   stages {
       stage('Clone Down') {
@@ -31,6 +35,7 @@ pipeline {
             }
             steps {
               sh 'ci/build-app.sh'
+              stash 'code'
               sh 'ls'
               deleteDir()
               sh 'ls'
