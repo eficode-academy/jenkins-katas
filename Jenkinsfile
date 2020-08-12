@@ -6,9 +6,9 @@ pipeline {
             skipDefaultCheckout(true)
         }
         steps {
-          node (
-            label: 'host'
-          )
+          // node (
+          //   label: 'host'
+          // )
           stash (
             excludes: '.git',
             name: 'code'
