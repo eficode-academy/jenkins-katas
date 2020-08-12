@@ -52,4 +52,5 @@ pipeline {
     always {
         deleteDir() /* clean up our workspace */
     }
+  }
 }
