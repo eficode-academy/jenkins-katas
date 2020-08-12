@@ -33,6 +33,10 @@ pipeline {
                 image 'gradle:jdk11'
               }
             }
+            when {
+                beforeAgent true
+                branch 'master'
+            }
             steps {
               sh 'ci/build-app.sh'
               stash 'code'
@@ -71,10 +75,14 @@ pipeline {
                 sh 'ci/push-docker.sh'
           }
         }
-        stage('Master branch build') {
-          when { branch "master" }
+        stage('Component Test') {
+          when { 
+            not {
+              branch "dev/*" 
+              }
+            }
           steps {
-            sh 'echo "On master branch"'
+            sh 'ci/component-test.sh'
           }
         }
       }
