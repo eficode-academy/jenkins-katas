@@ -33,8 +33,8 @@ pipeline {
             archiveArtifacts 'app/build/libs/'
             deleteDir()
             sh 'ls'
+            stash 'builtfiles'
           }
-          stash 'builtfiles'
         }
 
         stage('Test app') {
