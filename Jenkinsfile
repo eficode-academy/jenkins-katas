@@ -50,7 +50,7 @@ pipeline {
         }
       }
       steps {
-        unstash 'binaries'
+        unstash 'code'
         sh 'ci/component-test.sh'
       }
     }
