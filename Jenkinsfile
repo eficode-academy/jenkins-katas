@@ -32,7 +32,24 @@ pipeline {
             sh 'ls'
           }
         }
+
+        stage('Test app') {
+          agent {
+            docker {
+              image 'gradle:jdk11'
+            }
+          }
+          steps {
+            unstash 'allmyfilesyolo'
+            sh 'ci/unit-test-app.sh'
+            junit 'app/build/test-results/test/TEST-*.xml'
+          }
+        }
       }
     }
   }
+  post {
+    always {
+        deleteDir() /* clean up our workspace */
+    }
 }
