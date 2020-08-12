@@ -26,12 +26,12 @@ To use the "Replay" feature:
 Currently the Replay feature is not available using the Blue Ocean ui, so we use the classic ui. 
 
 * Select a previously completed run in the build history.
-* In the upper right corner click the 'exit' icon labelled 'Go to classic'.
+* In the upper right corner click the 'exit' icon labeled 'Go to classic'.
 * You should now have a different ui showing the same build.
 * Click **Replay** in the left menu.
 * You can now make changes to the pipeline code.
-* Make modifications to the buttom of the `build app` stage: first list the contents of the workspace, then use the `deleteDir()` keyword to delete the workspace, and finally list the content again after the deletion, to verify that they were deleted.
-    * If you get stuck figuring out the declarative syntax, see the folloing section `Getting help from Jenkins`.
+* Make modifications to the button of the `build app` stage: first list the contents of the workspace, then use the `deleteDir()` keyword to delete the workspace, and finally list the content again after the deletion, to verify that they were deleted.
+    * If you get stuck figuring out the declarative syntax, see the following section `Getting help from Jenkins`.
 * Click **Run**.
 * Check the results of changes
 
@@ -44,7 +44,7 @@ There are two different code generators in Jenkins when using the classical UI.
 * **Snippet generator** is there to help you make the right syntax for the different steps inside a job.
 * **Declarative Directive Generator** is there to help you make the right syntax for the structure of the job itself, with agents, parallel runs etc.
 
-> Note: the pipeline editor in Blue oceac combines both of the generators into one more easily useable tool. The snippit generator does have it's merrits as a help for the syntax itself when you are editing the pipeline on your computer.
+> Note: the pipeline editor in Blue Ocean combines both of the generators into one more easily useable tool. The snippet generator does have it's merits as a help for the syntax itself when you are editing the pipeline on your computer.
 
 To generate a step snippet with the Snippet Generator:
 
@@ -61,7 +61,7 @@ This is achieved by agent labels depicting which of the agents this particular s
 
 When we transfer our job from one agent to another, we usually also need to transfer our repository data along with other already made binaries.
 
-> Note: everytime you change agent (both node and docker agent), Jenkins will clone down the repository again. If you do not want that, you need to add the option [skipDefaultCheckout(true)](https://jenkins.io/doc/book/pipeline/syntax/#options) to the stages that does not need this option, or in the [stages part in the top](https://jenkins.io/blog/2018/04/09/whats-in-declarative/#new-options)
+> Note: every time you change agent (both node and docker agent), Jenkins will clone down the repository again. If you do not want that, you need to add the option [skipDefaultCheckout(true)](https://jenkins.io/doc/book/pipeline/syntax/#options) to the stages that does not need this option, or in the [stages part in the top](https://jenkins.io/blog/2018/04/09/whats-in-declarative/#new-options)
 
 ### Tasks
 
