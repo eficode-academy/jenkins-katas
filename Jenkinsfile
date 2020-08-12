@@ -25,9 +25,9 @@ pipeline {
           }
           steps {
             unstash 'allmyfilesyolo'
+            sh 'ls'
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
-            sh 'ls'
             deleteDir()
             sh 'ls'
           }
