@@ -29,15 +29,26 @@ pipeline {
       }
     }
     stage('docker push app'){
+      when {
+        branch "master"
+      }
         environment {
           DOCKERCREDS = credentials('docker_login')
         }
         steps {
-              unstash 'code' //unstash the repository code
+              unstash 'code'
               sh 'ci/build-docker.sh'
               sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
               sh 'ci/push-docker.sh'
+              stash 'binaries'
         }
+    }
+    stage('component test') {
+      when {branch "dev/*"}
+      steps {
+        unstash 'binaries'
+        sh 'ci/component-test.sh'
+      }
     }
   }
   post {
