@@ -1,6 +1,18 @@
 pipeline {
   agent any
   stages {
+    stage('clone down') {
+      agent {
+        node {
+          label 'host'
+        }
+
+      }
+      steps {
+        stash(name: 'code', excludes: '.git')
+      }
+    }
+
     stage('Parallel Execution') {
       parallel {
         stage('Say Hello') {
@@ -19,6 +31,15 @@ pipeline {
           steps {
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
+            unstash 'code'
+          }
+        }
+
+        stage('Test app') {
+          steps {
+            unstash 'code'
+            sh 'ci/unit-test-app.sh'
+            sh 'junit \'app/build/test-result/test/TEST-*.xml\''
           }
         }
 
