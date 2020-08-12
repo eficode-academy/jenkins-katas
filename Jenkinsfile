@@ -23,6 +23,9 @@ pipeline {
             }
 
           }
+          options {
+            skipDefaultCheckout(true)
+          }
           steps {
             unstash 'code'
             sh 'ci/build-app.sh'
@@ -33,8 +36,5 @@ pipeline {
       }
     }
 
-  }
-  options {
-    skipDefaultCheckout(true)
   }
 }
