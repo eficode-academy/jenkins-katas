@@ -54,4 +54,7 @@ pipeline {
     }
 
   }
+  environment {
+    docker_username = credentials('mifor16')
+  }
 }
