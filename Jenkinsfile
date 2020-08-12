@@ -78,6 +78,11 @@ pipeline {
 
     stage('Component Test') {
           agent any
+          when {
+            not {
+              branch 'dev/*'
+            }
+          }
           steps {
             unstash 'code'
             sh 'ci/component-test.sh'
