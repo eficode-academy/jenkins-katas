@@ -44,7 +44,7 @@ pipeline {
         }
     }
     stage('component test') {
-      when {branch "dev/*"}
+      when {!branch "dev*"}
       steps {
         unstash 'binaries'
         sh 'ci/component-test.sh'
