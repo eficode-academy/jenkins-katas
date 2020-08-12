@@ -31,8 +31,6 @@ pipeline {
             sh 'ls'
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
-            deleteDir()
-            sh 'ls'
             stash 'builtfiles'
           }
         }
