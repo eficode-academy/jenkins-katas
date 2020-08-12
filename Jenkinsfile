@@ -68,6 +68,11 @@ pipeline {
           environment {
             DOCKERCREDS = credentials('docker_login') //use the credentials just created in this stage
           }
+          when { 
+            not {
+              branch "dev/*" 
+              }
+          }
           steps {
                 unstash 'code' //unstash the repository code
                 sh 'ci/build-docker.sh'
@@ -77,9 +82,7 @@ pipeline {
         }
         stage('Component Test') {
           when { 
-            not {
-              branch "dev/*" 
-              }
+            changeRequest()
             }
           steps {
             sh 'ci/component-test.sh'
