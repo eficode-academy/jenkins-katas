@@ -31,7 +31,7 @@ pipeline {
             sh 'ls'
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
-            stash 'builtfiles'
+            stash excludes: '.git/', name: 'builtfiles'
           }
         }
 
