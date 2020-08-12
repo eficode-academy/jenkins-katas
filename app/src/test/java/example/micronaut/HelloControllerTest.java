@@ -26,6 +26,7 @@ public class HelloControllerTest {
 
         assertNotNull(body);
         assertEquals("Hello sofus", body);
+        assertNotNull(null);
     }
     @Test
     public void testCombineName() {
