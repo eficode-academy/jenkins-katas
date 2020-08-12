@@ -16,27 +16,12 @@ pipeline {
             }
 
           }
-          environment {
-            skipDefaultCheckout = 'true'
-          }
           steps {
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
             sh 'ls'
             deleteDir()
             sh 'ls'
-          }
-        }
-
-        stage('') {
-          agent {
-            node {
-              label 'host'
-            }
-
-          }
-          steps {
-            stash(name: 'code', excludes: '.git')
           }
         }
 
