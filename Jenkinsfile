@@ -1,5 +1,8 @@
 pipeline {
   agent any
+   environment {
+      docker_username = praqmasofus
+}
   
   stages {
     stage('Clone down'){
@@ -29,6 +32,7 @@ pipeline {
             unstash 'code'
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
+            stash excludes: '.git', name: 'code'
           }
         }
         stage('test app') {
@@ -55,8 +59,6 @@ pipeline {
           options {
             skipDefaultCheckout()
           }
-          agent any
-
           environment {
       DOCKERCREDS = credentials('docker_login') //use the credentials just created in this stage
 }
