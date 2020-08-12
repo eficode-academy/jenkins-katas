@@ -22,7 +22,7 @@ pipeline {
 
           }
           steps {
-            sh 'echo "hi"'
+            sh '/home/ubuntu/jenkins/jenkins-katas/ci/build-app.sh'
           }
         }
 
