@@ -41,6 +41,9 @@ pipeline {
               image 'gradle:jdk11'
             }
           }
+          options {
+            skipDefaultCheckout()
+          }
           steps {
             unstash 'allmyfilesyolo'
             sh 'ci/unit-test-app.sh'
