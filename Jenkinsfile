@@ -22,6 +22,7 @@ pipeline {
             docker {
               image 'gradle:jdk11'
             }
+
           }
           options {
             skipDefaultCheckout()
