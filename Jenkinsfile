@@ -1,6 +1,18 @@
 pipeline {
   agent any
   stages {
+
+    stage('Clone Down') {
+      steps {
+        node {
+          label 'host'
+        }
+        stash {
+          exclude '.git'
+        }
+      }
+    }
+
     stage('Parallel execution') {
       parallel {
         stage('Say Hello') {
@@ -8,7 +20,6 @@ pipeline {
             sh 'echo "hello world"'
           }
         }
-
         stage('Build App') {
           agent {
             docker {
@@ -22,10 +33,9 @@ pipeline {
             deleteDir()
             sh 'ls'
           }
+          skipDefaultCheckout(true)
         }
-
       }
     }
-
   }
 }
