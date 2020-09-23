@@ -1,0 +1,17 @@
+# Instructions
+
+The instructions for terraform-infra should be the
+following:
+
+```tfvars
+gcp_service_account_key = "praqma-training.json"
+gcp_project_id = "praqma-training"
+name_prefix = "academyjenkins-"
+source_ip_cidr = [ "0.0.0.0/0" ]
+bastion_count = 1
+instance_count = 1
+instance_ports = ["80-40000"]
+instance_machine_type= "n1-standard-2"
+extra_bootstrap_cmds = "sudo -u ubuntu bash -c 'cd /home/ubuntu && git clone https://github.com/eficode-academy/jenkins-katas.git'"
+instance_disk_size=50
+```
