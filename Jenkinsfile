@@ -65,9 +65,15 @@ pipeline {
       }
       steps {
         unstash 'code'
-        sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin'
-        sh 'ci/push-docker.sh'
+        pushIfMaster()
       }
     }
   }
+}
+
+void pushIfMaster() {
+    if (BRANCH_NAME=="master"){
+      sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin'
+      sh 'ci/push-docker.sh'
+    }
 }
