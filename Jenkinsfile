@@ -4,7 +4,7 @@ pipeline {
     stage('clone down') {
       agent {
         node {
-          label 'host'
+          label 'master-label'
         }
 
       }
@@ -36,6 +36,21 @@ pipeline {
             sh 'ls -al'
             deleteDir()
             sh 'ls -al'
+          }
+        }
+
+        stage('test app') {
+          agent {
+            docker {
+              image 'gradle:jdk11'
+            }
+
+          }
+          steps {
+            skipDefaultCheckout true
+            unstash 'code'
+            sh 'ci/unit-test-app.sh'
+            junit 'app/build/test-results/test/TEST-*.xml'
           }
         }
 
