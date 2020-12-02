@@ -8,14 +8,14 @@ pipeline {
     stage('Master branch build') {
       when { branch "master" }
       steps {
-        sh 'Echo "On master branch"'
+        sh 'echo "On master branch"'
       }
     }
 
     stage('Dev branch build') {
       when { branch "dev" }
       steps {
-        sh 'Echo "On dev branch"'
+        sh 'echo "On dev branch"'
       }
     }
 
