@@ -1,6 +1,9 @@
 pipeline {
   agent any
-  
+  environment { 
+        docker_username = 'saara.laakko@eficode.com'
+  }
+
   stages {
     stage('Clone down') {
       steps {
