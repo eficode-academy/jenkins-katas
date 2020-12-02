@@ -31,7 +31,20 @@ pipeline {
             deleteDir()
           }
         }
+        stage('test app') {
+          options { skipDefaultCheckout() }
+          agent {
+            docker {
+              image 'gradle:jdk12'
+            }
 
+          }
+          steps {
+            unstash 'code'
+            sh 'ci/unit-test-app.sh'
+            junit 'app/build/test-results/test/TEST-*.xml'
+          }
+        }
       }
     }
 
