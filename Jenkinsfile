@@ -1,7 +1,6 @@
 pipeline {
   agent any
   stages {
-
     stage('clone down') {
       agent {
         node {
@@ -30,7 +29,8 @@ pipeline {
 
           }
           steps {
-            skipDefaultCheckout(true)
+            skipDefaultCheckout true
+            unstash 'code'
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
             sh 'ls -al'
