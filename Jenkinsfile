@@ -32,6 +32,7 @@ pipeline {
           steps {
             unstash 'code'
             sh 'ci/build-app.sh'
+            stash excludes: '.git', name: 'code'
             archiveArtifacts 'app/build/libs/'
           }
           post {
