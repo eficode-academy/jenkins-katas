@@ -5,7 +5,6 @@ pipeline {
   }
 
   stages {
-
     stage('Master branch build') {
       when { branch "master" }
       steps {
@@ -19,6 +18,7 @@ pipeline {
         sh 'Echo "On dev branch"'
       }
     }
+
     stage('clone down') {
       agent {
         node {
@@ -44,7 +44,10 @@ pipeline {
             docker {
               image 'gradle:jdk11'
             }
-
+          when {
+            beforeAgent true
+            branch 'master'
+          }
           }
           steps {
             skipDefaultCheckout true
