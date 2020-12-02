@@ -20,6 +20,13 @@ pipeline {
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
           }
+          post {
+              cleanup {
+                  sh "ls -l"
+                  deleteDir()
+                  sh "ls -l"
+              }
+          }
         }
 
       }
