@@ -44,10 +44,10 @@ pipeline {
             docker {
               image 'gradle:jdk11'
             }
+          }
           when {
             beforeAgent true
             branch 'master'
-          }
           }
           steps {
             skipDefaultCheckout true
