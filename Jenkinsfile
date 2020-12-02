@@ -18,12 +18,14 @@ pipeline {
         stage('build app') {
           agent {
             docker {
-              unstash 'code'
               image 'gradle:jdk11'
-              skipDefaultCheckout(true)
             }
+          options {
+            skipDefaultCheckout(true)
+          }
           }
           steps {
+            unstash 'code'
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
             sh 'ls'
