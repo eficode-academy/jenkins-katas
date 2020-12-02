@@ -74,6 +74,8 @@ We want a pipeline that on the stages looks like this:
 * In the stage `build app`, add the `skipDefaultCheckout(true)` option
 * Add a new first step where you unstash your "code" stash.
 * Run the pipeline and see that the build still runs
+* If you do not have any nodes with that label attached, it will just wait forever.
+* If that is the case, change the label in the job to `master-label` which should be the label of the node embedded in your master.
 
 ## Test reporting
 
