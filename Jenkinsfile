@@ -1,7 +1,8 @@
 pipeline {
   agent any
-  environment { 
-        docker_username = 'saara.laakko@eficode.com'
+  environment {
+        CC = 'clang'
+        docker_username = 'saaralaakko'
   }
 
   stages {
