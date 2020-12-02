@@ -39,7 +39,7 @@ pipeline {
           options { skipDefaultCheckout() }
           agent {
             docker {
-              image 'gradle:jdk12'
+              image 'gradle:jdk11'
             }
 
           }
