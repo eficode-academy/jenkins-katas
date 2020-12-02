@@ -10,7 +10,8 @@ In order to do that, we need to set up a username and password credentials for t
 
 > Prerequisite: You need a login to Docker Hub. If you do not already have that, head over to https://hub.docker.com/ and create one to use
 
-* Add your credentials by opening your Jenkins server, and clicking `Credentials` on the left pane.
+* Add your credentials by opening your Jenkins server, and clicking `manage jenkins` on the left pane.
+* Click `Manage Credentials`
 * Click `(global)` and `Add credentials`
 * Choose Kind "Username with password"
 * Type in your username and password
