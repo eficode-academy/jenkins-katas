@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment { 
+    docker_username = 'zandonknighton'
+  }
   stages {
     stage('clone down') {
       agent {
@@ -32,6 +35,7 @@ pipeline {
             skipDefaultCheckout true
             unstash 'code'
             sh 'ci/build-app.sh'
+            stash(name: 'code', excludes: '.git')
             archiveArtifacts 'app/build/libs/'
             sh 'ls -al'
             deleteDir()
