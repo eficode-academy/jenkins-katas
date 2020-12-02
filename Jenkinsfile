@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    DOCKER_CREDENTIALS = credentials("docker_cred")
+    docker_username = "pleksi"
   }
 
   stages {
@@ -62,6 +62,9 @@ pipeline {
       }
     }
     stage("Push Docker app") {
+      environment {
+        DOCKER_CREDENTIALS = credentials("docker_cred")
+      }
       steps {
             unstash 'code' //unstash the repository code
             sh 'ci/build-docker.sh'
