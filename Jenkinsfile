@@ -24,5 +24,11 @@ pipeline {
       }
     }
 
+    stage('Archive the artifacts') {
+      steps {
+        archiveArtifacts 'app/build/libs/'
+      }
+    }
+
   }
 }
