@@ -4,21 +4,21 @@ pipeline {
     docker_username = credentials('docker_username')
   }
 
-  stage('Master branch build') {
-    when { branch "master" }
-    steps {
-      sh 'Echo "On master branch"'
-    }
-  }
-
-  stage('Dev branch build') {
-    when { branch "dev" }
-    steps {
-      sh 'Echo "On dev branch"'
-    }
-  }
-
   stages {
+
+    stage('Master branch build') {
+      when { branch "master" }
+      steps {
+        sh 'Echo "On master branch"'
+      }
+    }
+
+    stage('Dev branch build') {
+      when { branch "dev" }
+      steps {
+        sh 'Echo "On dev branch"'
+      }
+    }
     stage('clone down') {
       agent {
         node {
@@ -89,9 +89,9 @@ pipeline {
       steps {
         unstash 'code' //unstash the repository code
         sh 'ci/build-docker.sh'
-        input message: 'Approve push to Dockerhub?', ok: 'Yes'
-        sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
-        sh 'ci/push-docker.sh'
+        //input message: 'Approve push to Dockerhub?', ok: 'Yes'
+        //sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
+        //sh 'ci/push-docker.sh'
       }
     }
   }
