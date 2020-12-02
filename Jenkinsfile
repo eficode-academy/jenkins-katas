@@ -4,6 +4,20 @@ pipeline {
     docker_username = credentials('docker_username')
   }
 
+  stage('Master branch build') {
+    when { branch "master" }
+    steps {
+      sh 'Echo "On master branch"'
+    }
+  }
+
+  stage('Dev branch build') {
+    when { branch "dev" }
+    steps {
+      sh 'Echo "On dev branch"'
+    }
+  }
+
   stages {
     stage('clone down') {
       agent {
