@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  environment { 
-    docker_username = 'zandonknighton'
-  }
   stages {
     stage('clone down') {
       agent {
@@ -50,20 +47,31 @@ pipeline {
             }
 
           }
+          post {
+            always {
+              deleteDir()
+            }
+
+          }
           steps {
             skipDefaultCheckout true
             unstash 'code'
             sh 'ci/unit-test-app.sh'
             junit 'app/build/test-results/test/TEST-*.xml'
           }
-          post {
-            always {
-              deleteDir() /* clean up our workspace */
-            }
-          }
         }
+
       }
     }
 
+    stage('push docker app') {
+      steps {
+        unstash 'code'
+      }
+    }
+
+  }
+  environment {
+    docker_username = 'zandonknighton'
   }
 }
