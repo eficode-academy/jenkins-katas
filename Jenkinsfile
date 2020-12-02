@@ -15,41 +15,40 @@ pipeline {
           }
         }
 
-        parallel {
-          stage('Build app') {
-            agent {
-              docker {
-                image 'gradle:jdk11'
-              }
-            }
-            options {
-              skipDefaultCheckout true
-            }
-            steps {
-              unstash 'code'
-              sh 'ci/build-app.sh'
-              archiveArtifacts 'app/build/libs/'
-            }
-            post {
-                cleanup {
-                    sh "ls -l"
-                    deleteDir()
-                    sh "ls -l"
-                }
+        stage('Build app') {
+          agent {
+            docker {
+              image 'gradle:jdk11'
             }
           }
-          stage("Test app") {
-            agent {
-              docker {
-                image 'gradle:jdk11'
+          options {
+            skipDefaultCheckout true
+          }
+          steps {
+            unstash 'code'
+            sh 'ci/build-app.sh'
+            archiveArtifacts 'app/build/libs/'
+          }
+          post {
+              cleanup {
+                  sh "ls -l"
+                  deleteDir()
+                  sh "ls -l"
               }
+          }
+        }
+
+        stage("Test app") {
+          agent {
+            docker {
+              image 'gradle:jdk11'
             }
-            options {
-              skipDefaultCheckout true
-            }
-            steps {
-              unstash "code"
-            }
+          }
+          options {
+            skipDefaultCheckout true
+          }
+          steps {
+            unstash "code"
           }
         }
       }
