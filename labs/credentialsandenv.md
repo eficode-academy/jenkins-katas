@@ -35,7 +35,8 @@ In the exercise you are both going to make a global environment variable, and a 
 
 > hint: If you want to see an example on how to do this, look at this [example](https://jenkins.io/doc/book/pipeline/jenkinsfile/#setting-environment-variables).
 
-* add a **new** stage after the `test app` stage (not in parallel) called `push docker app`. It should look like the others with the following code:
+* In your ´build-app´ stage, make a stash after you have called ´ci/build-app.sh´, so that you stash the artifact. The stash name should be the same as before; `code`
+* add a **new** stage after the `test app` stage (not in parallel) called `push docker app`. It should have the following code in order to work:
 
 ``` Groovy
 environment {
