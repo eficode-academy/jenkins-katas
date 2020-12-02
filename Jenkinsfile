@@ -67,7 +67,7 @@ pipeline {
       }
       steps {
             unstash 'code' //unstash the repository code
-            input message: 'Push to docker?', ok: 'Yes'
+            //input message: 'Push to docker?', ok: 'Yes'
             sh 'ci/build-docker.sh'
             sh 'echo "$DOCKER_CREDENTIALS_PSW" | docker login -u "$DOCKER_CREDENTIALS_USR" --password-stdin' //login to docker hub with the credentials above
             sh 'ci/push-docker.sh'
