@@ -1,17 +1,15 @@
 pipeline {
   agent any
-  environment {
-        CC = 'clang'
-        docker_username = 'saaralaakko'
-  }
-
+  
   stages {
-    stage('Clone down') {
-      steps {
-        stash(excludes: '.git', name: 'code')
+    stage('Clone down'){
+      agent {
+        label 'host'
+      }
+      steps{
+        stash excludes: '.git', name: 'code'
       }
     }
-
     stage('Parallel execution') {
       parallel {
         stage('Say Hello') {
@@ -21,14 +19,14 @@ pipeline {
         }
 
         stage('build app') {
+          options {
+            skipDefaultCheckout()
+          }
           agent {
             docker {
               image 'gradle:jdk11'
             }
 
-          }
-          options {
-            skipDefaultCheckout()
           }
           steps {
             unstash 'code'
@@ -36,24 +34,26 @@ pipeline {
             archiveArtifacts 'app/build/libs/'
           }
         }
-
         stage('test app') {
+          options {
+            skipDefaultCheckout()
+          }
           agent {
             docker {
               image 'gradle:jdk11'
             }
 
           }
-          options {
-            skipDefaultCheckout()
-          }
           steps {
             unstash 'code'
             sh 'ci/unit-test-app.sh'
+            
             junit 'app/build/test-results/test/TEST-*.xml'
           }
         }
 
+      }
+        }
         stage('push app') {
           options {
             skipDefaultCheckout()
@@ -69,11 +69,6 @@ steps {
       sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
       sh 'ci/push-docker.sh'
 }
-    }
-
-
-
-      }
     }
 
   }
