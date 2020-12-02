@@ -1,12 +1,18 @@
 pipeline {
   agent any
   stages {
-    stage('clone down'){
-      agent {label 'master-label'}
+    stage('clone down') {
+      agent {
+        node {
+          label 'master-label'
+        }
+
+      }
       steps {
-        stash excludes: '.git', name: 'code'
+        stash(name: 'code', excludes: '.git')
       }
     }
+
     stage('Parallel execution') {
       parallel {
         stage('Say hello') {
@@ -16,35 +22,44 @@ pipeline {
         }
 
         stage('build app') {
-          options { skipDefaultCheckout() }
           agent {
             docker {
-              image 'gradle:jdk12'
+              image 'gradle:jdk11'
             }
 
           }
           steps {
+            skipDefaultCheckout true
             unstash 'code'
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
-            sh 'ls'
+            sh 'ls -al'
             deleteDir()
+            sh 'ls -al'
           }
         }
+
         stage('test app') {
-          options { skipDefaultCheckout() }
           agent {
             docker {
-              image 'gradle:jdk12'
+              image 'gradle:jdk11'
+            }
+
+          }
+          post {
+            always {
+              deleteDir()
             }
 
           }
           steps {
+            skipDefaultCheckout true
             unstash 'code'
             sh 'ci/unit-test-app.sh'
             junit 'app/build/test-results/test/TEST-*.xml'
           }
         }
+
       }
     }
 
