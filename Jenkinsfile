@@ -69,7 +69,6 @@ pipeline {
         sh 'ci/component-test.sh'
       }
     }
-
   } 
 }
 void pushIfMaster() {
