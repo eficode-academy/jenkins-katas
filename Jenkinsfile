@@ -3,8 +3,9 @@ pipeline {
   stages {
     stage('clone down') {
           agent {
-            label 'Host'
-            stash excludes: '.git', name: 'code'
+            label 'Host' {
+             stash excludes: '.git', name: 'code'
+            }
           }
     stage('Parallel execution') {
       parallel {
