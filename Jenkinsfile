@@ -62,7 +62,7 @@ pipeline {
             unstash 'code'
             sh 'ci/build-docker.sh'
             sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
-            input message: 'push?', ok: 'Yes'
+            //input message: 'push?', ok: 'Yes'
             sh 'ci/push-docker.sh'
           }
         }
