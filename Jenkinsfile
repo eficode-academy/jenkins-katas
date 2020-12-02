@@ -61,11 +61,41 @@ pipeline {
           steps {
             unstash 'code'
             sh 'ci/build-docker.sh'
-            sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
+            //sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
             //input message: 'push?', ok: 'Yes'
-            sh 'ci/push-docker.sh'
+            //sh 'ci/push-docker.sh'
           }
         }
+         stage('push app') {
+          when{
+            branch 'master'
+          }
+          options {
+            skipDefaultCheckout()
+          }
+          environment {
+      DOCKERCREDS = credentials('docker_login') //use the credentials just created in this stage
+}
+steps {
+      sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
+      sh 'ci/push-docker.sh'
+}
+    }
+      stage('component test') {
+        when {
+  not {
+    branch '*dev'
+  }
+  beforeAgent true
+}
+      options {
+        skipDefaultCheckout(true)
+      }
+      steps {
+        unstash 'code'
+        sh 'ci/component-test.sh'
+      }
+    }
 
 
   }         
