@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'gadle:jdk11'
+    }
+
+  }
   stages {
     stage('Parallel execution') {
       parallel {
