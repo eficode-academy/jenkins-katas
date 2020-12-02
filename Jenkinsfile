@@ -1,6 +1,12 @@
 pipeline {
   agent any
   stages {
+    stage('clone down') {
+      agent {label 'master-label'}
+      steps {
+        stash excludes: '.git', name: 'code'
+      }
+    }
     stage('Parallel execution') {
       parallel {
         stage('Say Hello') {
