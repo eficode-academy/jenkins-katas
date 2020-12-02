@@ -30,7 +30,7 @@ Currently the Replay feature is not available using the Blue Ocean ui, so we use
 * You should now have a different ui showing the same build.
 * Click **Replay** in the left menu.
 * You can now make changes to the pipeline code.
-* Make modifications to the button of the `build app` stage: first list the contents of the workspace, then use the `deleteDir()` keyword to delete the workspace, and finally list the content again after the deletion, to verify that they were deleted.
+* Make modifications to the end of the `build app` stage: first list the contents of the workspace, then use the `deleteDir()` keyword to delete the workspace, and finally list the content again after the deletion, to verify that they were deleted.
     * If you get stuck figuring out the declarative syntax, see the following section `Getting help from Jenkins`.
 * Click **Run**.
 * Check the results of changes
