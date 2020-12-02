@@ -1,5 +1,9 @@
 pipeline {
   agent any
+  environment {
+    docker_username = credentials('docker_username')
+  }
+
   stages {
     stage('clone down') {
       agent {
@@ -65,13 +69,16 @@ pipeline {
     }
 
     stage('push docker app') {
+      environment {
+        DOCKERCREDS = credentials('docker_login') //use the credentials just created in this stage
+      }
       steps {
-        unstash 'code'
+        unstash 'code' //unstash the repository code
+        sh 'ci/build-docker.sh'
+        input message: ‘Approve push to Dockerhub?’, ok: ‘Yes’
+        sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
+        sh 'ci/push-docker.sh'
       }
     }
-
-  }
-  environment {
-    docker_username = 'zandonknighton'
   }
 }
