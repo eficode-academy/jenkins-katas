@@ -8,7 +8,7 @@ pipeline {
     stage('Master branch build') {
       when { branch "master" }
       steps {
-        sh 'echo "On master branch"'
+        sh 'echo "On master branch, push test"'
       }
     }
 
