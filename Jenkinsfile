@@ -7,6 +7,7 @@ pipeline {
              stash excludes: '.git', name: 'code'
             }
           }
+    }
     stage('Parallel execution') {
       parallel {
         stage('Say Hello') {
