@@ -61,14 +61,35 @@ pipeline {
         }
       }
     }
-    stage("Push Docker app") {
-      environment {
-        DOCKER_CREDENTIALS = credentials("docker_cred")
-      }
+    stage("Build Docker") {
       steps {
             unstash 'code' //unstash the repository code
             //input message: 'Push to docker?', ok: 'Yes'
             sh 'ci/build-docker.sh'
+            stash excludes: '.git', name: 'code'
+      }
+    }
+
+    stage("Run component tests") {
+      when {
+        not {
+          branch "**/dev/*"
+        }
+      }
+      steps {
+        sh 'ci/component-test.sh'
+      }
+    }
+
+    stage("Push Docker app") {
+      when {
+        branch "master"
+      }
+      environment {
+        DOCKER_CREDENTIALS = credentials("docker_cred")
+      }
+      steps {
+            unstash "code"
             sh 'echo "$DOCKER_CREDENTIALS_PSW" | docker login -u "$DOCKER_CREDENTIALS_USR" --password-stdin' //login to docker hub with the credentials above
             sh 'ci/push-docker.sh'
       }
