@@ -8,7 +8,7 @@ Just like the conditional branching exercise, this will also use the `when` sect
 
 If you did not manage to get the exercise done, you can use our [example pipeline](../examples/jenkinsfile_conditional) instead.
 
-Besides the `branch` condition, when also has a `changeRequest()` condition, checking if what
+Besides the `branch` condition, `when` also has a `changeRequest()` condition, checking if what
 
 ```Jenkins
 stage('Change request') {
@@ -51,6 +51,11 @@ Go ahead and try it out, to see what it feels like.
 
 Try to make a couple of different branches that you push up to github and maked pull requests on.
 It could be that you in one broke the unit tests to see that the CI system caught that, and another where you make your branch diverge from what is on master now, triggering the build-in github rules.
+
+> Note: When you make a pull request on your forked repository, GitHub will make target branch the master of _the original repo_.
+> You need to change it manually to make the pull request based on your fork.
+>
+> ![Change pull request base branch](../img/pull_request.png)
 
 ## Further reading
 

@@ -71,8 +71,8 @@ When we transfer our job from one agent to another, we usually also need to tran
 We want a pipeline that on the stages looks like this:
 ![Stages](../img/stages02.png)
 
-* Make a new stage called __clone down__.
-* Make that stage run on the agent with a node that has the label **host**.
+* Make a new stage called `clone down`.
+* Make that stage run on the agent with a node that has the label `host`.
 * Inside that stage, make a `stash` step that excludes the .git folder, and has the name "code".
 * In the stage `build app`, add the `skipDefaultCheckout(true)` option.
 * Add a new first step where you unstash your "code" stash.
@@ -82,7 +82,7 @@ We want a pipeline that on the stages looks like this:
 
 ## Test reporting
 
-Running a Gradle test and display the result
+Running a Gradle test and display the result.
 
 With `Preparation` now being done, we need to build the code and store the result.
 For each of the bullet points, try to build it to make sure it works before moving to the next.
