@@ -1,5 +1,5 @@
 jenkins:
-  systemMessage: "Jenkins says hello world :)\n\n"
+  systemMessage: "Welcome to Jenkins training!"
   numExecutors: 3
   mode: NORMAL
   scmCheckoutRetryCount: 3
