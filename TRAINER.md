@@ -12,7 +12,7 @@ bastion_count = 1
 instance_count = 1
 instance_ports = ["80-40000"]
 instance_machine_type= "n1-standard-2"
-extra_bootstrap_cmds = "sudo -u ubuntu bash -c 'cd /home/ubuntu && git clone https://github.com/eficode-academy/jenkins-katas.git && docker-compose up -d -f jenkins-katas/setup/docker-compose.yml'"
+extra_bootstrap_cmds = "sudo -u ubuntu bash -c 'cd /home/ubuntu && git clone https://github.com/eficode-academy/jenkins-katas.git && docker-compose -f jenkins-katas/setup/docker-compose.yml up -d'"
 instance_disk_size=50
 ```
 
