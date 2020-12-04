@@ -32,7 +32,7 @@ Thereafter we need to add a new agent through the
 Jenkins UI:
 
 - Go to Manage jenkins -> manage nodes -> new node
-  -> permanent agent
+  -> permanent agent.
 
 ![Adding a new agent](../img/new-agent.png)
 
@@ -54,7 +54,7 @@ On the screen, add the following:
 As we are using SSH, we need to add our SSH key to
 the host as well.
 
-- Under credentials, click add
+- Under credentials, click add.
 
 ![Adding a new cred](../img/add-cred.png)
 
@@ -68,16 +68,16 @@ the host as well.
   credential. The Pipeline uses this ID to apply
   these credentials
 
-- Click add
+- Click add.
 
-- Click save
+- Click save.
 
 ## Choosing which agent to run your pipeline
 
 You have now successfully set up your agent, and
 can use that when running your pipeline.
 
-### task
+### Tasks
 
 Replace `agent any` in your pipeline with the
 following:

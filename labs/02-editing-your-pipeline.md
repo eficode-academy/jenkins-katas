@@ -1,10 +1,10 @@
 
 # Editing your pipeline
 
-In the previous exercise, we used the GUI to create our pipeline. Although it is helpful, we also need to be sufficient to edit the script by hand as well.
-In this exercise you will:
+In the previous exercise, we used the GUI to create our pipeline. Although it is helpful and will help you get started, normally we need to edit
+the script by hand to better utilize the pipeline. In this exercise you will:
 
-* Use the replay feature for fast iteration of build steps.
+* Use the "Replay" feature for fast iteration of build steps.
 * Use different agents for building steps
 * Use stash and unstash for sending your data from one agent or step to another
 * Use the built-in test report plugin as a post step to show reports of Unit tests for each build.
@@ -31,11 +31,15 @@ Currently the Replay feature is not available using the Blue Ocean ui, so we use
 * Click **Replay** in the left menu.
 * You can now make changes to the pipeline code.
 * Make modifications to the end of the `build app` stage: first list the contents of the workspace, then use the `deleteDir()` keyword to delete the workspace, and finally list the content again after the deletion, to verify that they were deleted.
-    * If you get stuck figuring out the declarative syntax, see the following section `Getting help from Jenkins`.
+    * If you get stuck figuring out the declarative syntax, see the following section [`Getting help from Jenkins`](#getting-help-from-jenkins).
 * Click **Run**.
 * Check the results of changes
 
 Once you are satisfied with the changes, you can use **Replay** to view them again, copy them back to your Pipeline job or `Jenkinsfile`, and then commit them using your usual engineering processes.
+
+> Note: If you created your pipeline through Blue Ocean GUI to your forked repository, it automatically created a `Jenkinsfile` to the root of
+> your repository. This  Jenkinsfile is the code you see when you use the "Replay" functionality. If you do a `git pull` on your terminal, you should see
+> your Jenkinsfile updated if you make changes to your pipeline with the Blue Ocean GUI.
 
 ## Getting help from Jenkins
 
@@ -48,10 +52,13 @@ There are two different code generators in Jenkins when using the classical UI.
 
 To generate a step snippet with the Snippet Generator:
 
-* Navigate to the Pipeline Syntax link from a configured Pipeline, or at http://<your hostname>/pipeline-syntax.
+* Navigate to the Pipeline Syntax link from a configured Pipeline, or at `http://<your hostname>/pipeline-syntax`.
 * Select the desired step in the Sample Step dropdown menu
 * Use the dynamically populated area below the Sample Step dropdown to configure the selected step.
 * Click Generate Pipeline Script to create a snippet of Pipeline which can be copied and pasted into a Pipeline.
+
+> Note: As most stuff in Jenkins are actually open source plugins with thousands of different people maintaining them, few steps don't
+> have all options available through the snippet generator even though they still work.
 
 ## Building on different machines
 
@@ -68,36 +75,34 @@ When we transfer our job from one agent to another, we usually also need to tran
 We want a pipeline that on the stages looks like this:
 ![Stages](../img/stages02.png)
 
-* Make a new stage called __clone down__.
-* Make that stage run on the agent with a node that has the label **host**
-* Inside that stage, make a `stash` step that excludes the .git folder, and has the name "code"
-* In the stage `build app`, add the `skipDefaultCheckout(true)` option
+* Make a new stage called `clone down`.
+* Make that stage run on the agent with a node that has the label `host`.
+* Inside that stage, make a `stash` step that excludes the .git folder, and has the name "code".
+* In the stage `build app`, add the `skipDefaultCheckout(true)` option.
 * Add a new first step where you unstash your "code" stash.
-* Run the pipeline and see that the build still runs
+* Run the pipeline and see that the build still runs.
 * If you do not have any nodes with that label attached, it will just wait forever.
 * If that is the case, change the label in the job to `master-label` which should be the label of the node embedded in your master.
 
 ## Test reporting
 
-Running a Gradle test and display the result
+Running a Gradle test and display the result.
 
 With `Preparation` now being done, we need to build the code and store the result.
 For each of the bullet points, try to build it to make sure it works before moving to the next.
 
 ### Tasks
 
-* Add a new stage in parallel to `build app`, called `test app` by copying `build app` and deleting its steps excluding `unstash 'code'`
-* Call the shell script 'ci/unit-test-app.sh' to run the unit tests made
-* In order for you to get the unit tests out in the UI, add another step with the following; `junit 'app/build/test-results/test/TEST-*.xml'`
-* Click on the "Tests" tab to see the result
+* Add a new stage in parallel to `build app`, called `test app` by copying `build app` and deleting its steps excluding `unstash 'code'`.
+* Call the shell script `ci/unit-test-app.sh` to run the unit tests made.
+* In order for you to get the unit tests out in the UI, add another step with the following; `junit 'app/build/test-results/test/TEST-*.xml'`.
+* Click on the "Tests" tab to see the result.
 
 ## Post steps
 
+```Jenkins
+post {
+    cleanup {
+        deleteDir() /* clean up our workspace */
+}
 ```
-    post {
-        always {
-
-            deleteDir() /* clean up our workspace */
-        }
-```
-

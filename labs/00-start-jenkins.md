@@ -13,7 +13,7 @@ Make sure that you do not have anything listening on port 8080, in case there ar
 
 * Fork the repository to your own github account.
 * Clone the forked repository on your machine. (If you are using a provided instance, clone the same repository down to your machine as well).
-* On the instance `cd` into the repository folder
+* On the instance `cd` into the repository folder.
 
 * Set the admin password to something only you know. It is stored in the folder `secret` and is called admin.txt. You can use nano for changing the content of the file.
 

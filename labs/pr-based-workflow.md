@@ -8,15 +8,15 @@ Just like the conditional branching exercise, this will also use the `when` sect
 
 If you did not manage to get the exercise done, you can use our [example pipeline](../examples/jenkinsfile_conditional) instead.
 
-Besides the `branch` condition, when also has a `changeRequest()` condition, checking if what
+Besides the `branch` condition, `when` also has a `changeRequest()` condition, checking if the build is triggered by a pull request.
 
-```
-        stage('Change request') {
-          when { changeRequest() }
-          steps {
-            sh 'echo "this is a change request"'
-          }
-        }
+```Jenkins
+stage('Change request') {
+  when { changeRequest() }
+  steps {
+    sh 'echo "this is a change request"'
+  }
+}
 ```
 
 ### Tasks
@@ -31,11 +31,11 @@ We want the `component test` stage only to be run if the branch is named "master
 
 We do not want everybody to be able to push directly to master, without the CI server checking the quality of the code.
 So we need our Git repository to block incomming pushes directly to master. In that way we can ensure that the only way in to master is through a PR.
-This can be done in [GitHub](https://help.github.com/en/github/administering-a-repository/enabling-required-status-checks) under `settings->Branches`, Branch protection rules and then click on `add rule`
+This can be done in [GitHub](https://help.github.com/en/github/administering-a-repository/enabling-required-status-checks) under `settings->Branches`, Branch protection rules and then click on `add rule`.
 
 ### Tasks
 
-* Give it the pattern `master`
+* Give it the pattern `master`.
 * `Require status checks to pass before merging` Will block the pull request from merging untill the tests have passed.
 * `Require branches to be up to date before merging` The branch must be up to date with the base branch before merging.
 * `continuous-integration/jenkins/pr-merge` This check makes sure that a Pull Request cannot be merged before the CI system has checked it.
@@ -51,6 +51,11 @@ Go ahead and try it out, to see what it feels like.
 
 Try to make a couple of different branches that you push up to github and maked pull requests on.
 It could be that you in one broke the unit tests to see that the CI system caught that, and another where you make your branch diverge from what is on master now, triggering the build-in github rules.
+
+> Note: When you make a pull request on your forked repository, GitHub will make target branch the master of _the original repo_.
+> You need to change it manually to make the pull request based on your fork.
+>
+> ![Change pull request base branch](../img/pull_request.png)
 
 ## Further reading
 
