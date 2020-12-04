@@ -98,8 +98,7 @@ For each of the bullet points, try to build it to make sure it works before movi
 
 ```Jenkins
 post {
-    always {
-
+    cleanup {
         deleteDir() /* clean up our workspace */
 }
 ```
