@@ -8,7 +8,7 @@ Just like the conditional branching exercise, this will also use the `when` sect
 
 If you did not manage to get the exercise done, you can use our [example pipeline](../examples/jenkinsfile_conditional) instead.
 
-Besides the `branch` condition, `when` also has a `changeRequest()` condition, checking if what
+Besides the `branch` condition, `when` also has a `changeRequest()` condition, checking if the build is triggered by a pull request.
 
 ```Jenkins
 stage('Change request') {
@@ -31,7 +31,7 @@ We want the `component test` stage only to be run if the branch is named "master
 
 We do not want everybody to be able to push directly to master, without the CI server checking the quality of the code.
 So we need our Git repository to block incomming pushes directly to master. In that way we can ensure that the only way in to master is through a PR.
-This can be done in [GitHub](https://help.github.com/en/github/administering-a-repository/enabling-required-status-checks) under `settings->Branches`, Branch protection rules and then click on `add rule`
+This can be done in [GitHub](https://help.github.com/en/github/administering-a-repository/enabling-required-status-checks) under `settings->Branches`, Branch protection rules and then click on `add rule`.
 
 ### Tasks
 
