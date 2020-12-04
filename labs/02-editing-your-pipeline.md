@@ -31,7 +31,7 @@ Currently the Replay feature is not available using the Blue Ocean ui, so we use
 * Click **Replay** in the left menu.
 * You can now make changes to the pipeline code.
 * Make modifications to the end of the `build app` stage: first list the contents of the workspace, then use the `deleteDir()` keyword to delete the workspace, and finally list the content again after the deletion, to verify that they were deleted.
-    * If you get stuck figuring out the declarative syntax, see the following section `Getting help from Jenkins`.
+    * If you get stuck figuring out the declarative syntax, see the following section [`Getting help from Jenkins`](#getting-help-from-jenkins).
 * Click **Run**.
 * Check the results of changes
 
@@ -52,6 +52,9 @@ To generate a step snippet with the Snippet Generator:
 * Select the desired step in the Sample Step dropdown menu
 * Use the dynamically populated area below the Sample Step dropdown to configure the selected step.
 * Click Generate Pipeline Script to create a snippet of Pipeline which can be copied and pasted into a Pipeline.
+
+> Note: As most stuff in Jenkins are actually open source plugins with thousands of different people maintaining them, few steps don't
+> have all options available through the snippet generator even though they still work.
 
 ## Building on different machines
 
@@ -87,17 +90,16 @@ For each of the bullet points, try to build it to make sure it works before movi
 ### Tasks
 
 * Add a new stage in parallel to `build app`, called `test app` by copying `build app` and deleting its steps excluding `unstash 'code'`.
-* Call the shell script 'ci/unit-test-app.sh' to run the unit tests made.
+* Call the shell script `ci/unit-test-app.sh` to run the unit tests made.
 * In order for you to get the unit tests out in the UI, add another step with the following; `junit 'app/build/test-results/test/TEST-*.xml'`.
 * Click on the "Tests" tab to see the result.
 
 ## Post steps
 
-```
-    post {
-        always {
+```Jenkins
+post {
+    always {
 
-            deleteDir() /* clean up our workspace */
-        }
+        deleteDir() /* clean up our workspace */
+}
 ```
-
