@@ -48,7 +48,7 @@ There are two different code generators in Jenkins when using the classical UI.
 
 To generate a step snippet with the Snippet Generator:
 
-* Navigate to the Pipeline Syntax link from a configured Pipeline, or at http://<your hostname>/pipeline-syntax.
+* Navigate to the Pipeline Syntax link from a configured Pipeline, or at `http://<your hostname>/pipeline-syntax`.
 * Select the desired step in the Sample Step dropdown menu
 * Use the dynamically populated area below the Sample Step dropdown to configure the selected step.
 * Click Generate Pipeline Script to create a snippet of Pipeline which can be copied and pasted into a Pipeline.
@@ -69,11 +69,11 @@ We want a pipeline that on the stages looks like this:
 ![Stages](../img/stages02.png)
 
 * Make a new stage called __clone down__.
-* Make that stage run on the agent with a node that has the label **host**
-* Inside that stage, make a `stash` step that excludes the .git folder, and has the name "code"
-* In the stage `build app`, add the `skipDefaultCheckout(true)` option
+* Make that stage run on the agent with a node that has the label **host**.
+* Inside that stage, make a `stash` step that excludes the .git folder, and has the name "code".
+* In the stage `build app`, add the `skipDefaultCheckout(true)` option.
 * Add a new first step where you unstash your "code" stash.
-* Run the pipeline and see that the build still runs
+* Run the pipeline and see that the build still runs.
 * If you do not have any nodes with that label attached, it will just wait forever.
 * If that is the case, change the label in the job to `master-label` which should be the label of the node embedded in your master.
 
@@ -86,10 +86,10 @@ For each of the bullet points, try to build it to make sure it works before movi
 
 ### Tasks
 
-* Add a new stage in parallel to `build app`, called `test app` by copying `build app` and deleting its steps excluding `unstash 'code'`
-* Call the shell script 'ci/unit-test-app.sh' to run the unit tests made
-* In order for you to get the unit tests out in the UI, add another step with the following; `junit 'app/build/test-results/test/TEST-*.xml'`
-* Click on the "Tests" tab to see the result
+* Add a new stage in parallel to `build app`, called `test app` by copying `build app` and deleting its steps excluding `unstash 'code'`.
+* Call the shell script 'ci/unit-test-app.sh' to run the unit tests made.
+* In order for you to get the unit tests out in the UI, add another step with the following; `junit 'app/build/test-results/test/TEST-*.xml'`.
+* Click on the "Tests" tab to see the result.
 
 ## Post steps
 

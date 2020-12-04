@@ -24,7 +24,7 @@ Jenkins adds the [`when` directive](https://jenkins.io/doc/book/pipeline/syntax/
 This task is intentional more loosely formulated. Ask the instructor if you need guidance.
 
 * We want only to push to dockerhub when our pipeline is running on `master`
-* We want to run the component test in a stage of its own in the end of the pipeline. An it should run when the branch name is *not* starting with `dev/`. e.g. `dev/sal-working-branch`
+* We want to run the component test in a stage of its own in the end of the pipeline. And it should run when the branch name is *not* starting with `dev/`. e.g. `dev/sal-working-branch`
 
 > Note: You can execute the component test like: `sh 'ci/component-test.sh'`
 

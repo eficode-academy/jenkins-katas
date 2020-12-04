@@ -10,13 +10,13 @@ If you did not manage to get the exercise done, you can use our [example pipelin
 
 Besides the `branch` condition, when also has a `changeRequest()` condition, checking if what
 
-```
-        stage('Change request') {
-          when { changeRequest() }
-          steps {
-            sh 'echo "this is a change request"'
-          }
-        }
+```Jenkins
+stage('Change request') {
+  when { changeRequest() }
+  steps {
+    sh 'echo "this is a change request"'
+  }
+}
 ```
 
 ### Tasks
@@ -35,7 +35,7 @@ This can be done in [GitHub](https://help.github.com/en/github/administering-a-r
 
 ### Tasks
 
-* Give it the pattern `master`
+* Give it the pattern `master`.
 * `Require status checks to pass before merging` Will block the pull request from merging untill the tests have passed.
 * `Require branches to be up to date before merging` The branch must be up to date with the base branch before merging.
 * `continuous-integration/jenkins/pr-merge` This check makes sure that a Pull Request cannot be merged before the CI system has checked it.

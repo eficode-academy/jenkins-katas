@@ -11,10 +11,10 @@ In order to do that, we need to set up a username and password credentials for t
 > Prerequisite: You need a login to Docker Hub. If you do not already have that, head over to https://hub.docker.com/ and create one to use
 
 * Add your credentials by opening your Jenkins server, and clicking `manage jenkins` on the left pane.
-* Click `Manage Credentials`
-* Click `(global)` and `Add credentials`
-* Choose Kind "Username with password"
-* Type in your username and password
+* Click `Manage Credentials`.
+* Click `(global)` and `Add credentials`.
+* Choose Kind "Username with password".
+* Type in your username and password.
 * In the ID section, call it "docker_login". This is the ID you will reference back in your pipeline afterwards.
 * Click OK.
 
@@ -24,8 +24,8 @@ We want our pipeline to push our new docker image up to dockerhub every time we 
 For this we need to use the credentials just made.
 Our scripts needs two things:
 
-* An environment variable called `docker_username` that is your username for docker hub
-* A set of credentials to make your pipeline login to Docker Hub
+* An environment variable called `docker_username` that is your username for docker hub.
+* A set of credentials to make your pipeline login to Docker Hub.
 
 In the exercise you are both going to make a global environment variable, and a set of credentials only accessable to that particular stage that needs them.
 
@@ -69,10 +69,10 @@ We want to make Jenkins talk to GitHub, in order for it to push and pull from yo
 
 Tasks:
 
-* Generate a new SSH key that will be used by Jenkins to prove itself to GitHub, by following the first part of [Generating a new SSH key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
-* Add the public-key to your GitHub account by following [Adding a new SSH key to your GitHub account](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
+* Generate a new SSH key that will be used by Jenkins to prove itself to GitHub, by following the first part of [Generating a new SSH key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/).
+* Add the public-key to your GitHub account by following [Adding a new SSH key to your GitHub account](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/).
 * Add the private-key to Jenkins, by opening your Jenkins server, and clicking `Credentials`
-* Click `(global)` and `Add credentials`
-* Choose Kind "SSH Username with private key", write the details used to generate the keypair and paste the contents from the private-key you generated in the first step, (default ~/.ssh/id_rsa)
+* Click `(global)` and `Add credentials`.
+* Choose Kind "SSH Username with private key", write the details used to generate the keypair and paste the contents from the private-key you generated in the first step, (default ~/.ssh/id_rsa).
       write the passphrase you chose.
 * Save it.

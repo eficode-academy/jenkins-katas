@@ -12,25 +12,25 @@ Make a pipeline with the pipeline editor
 
 ### Task
 
-* Open Blue Ocean (Click the link on the left hand side that says 'Open Blue Ocean')
-* Create a new pipeline
-* Connect to GitHub
-  * Click `GitHub`
+* Open Blue Ocean (Click the link on the left hand side that says 'Open Blue Ocean').
+* Create a new pipeline.
+* Connect to GitHub.
+  * Click `GitHub`.
   * Click `Create an access token here`.
-  * You are now in GitHub
-    * Give it a name
-    * Scroll down and click on `generate token`
-    * Copy the token ( via icon )
-  * Go back to your Jenkins server
-  * Paste the token into Jenkins and click `Connect`
+  * You are now in GitHub.
+    * Give it a name.
+    * Scroll down and click on `generate token`.
+    * Copy the token ( via icon ).
+  * Go back to your Jenkins server.
+  * Paste the token into Jenkins and click `Connect`.
   * Choose the GitHub organization that has the forked repository.
   * Select the forked repository and `Create pipeline`.
-* Make a new stage, called `Say Hello` ( Hint: the `(+)` sign )
-* Add a step to the added stage
+* Make a new stage, called `Say Hello` ( Hint: the `(+)` sign ).
+* Add a step to the added stage.
   * Click `Add step` and select `Shell Script`,
-  * Copy-Paste `echo "hello world"` into the text field
-  * Click `Save`
-* Choose Commit to master -> click `Save & Run`
+  * Copy-Paste `echo "hello world"` into the text field.
+  * Click `Save`.
+* Choose Commit to master -> click `Save & Run`.
 * Please observe that it runs the stage and step.
   * Note: the `Check out from version control` step was already added when it was connected to GitHub repository.
 
@@ -41,11 +41,11 @@ We are also going to try to compile our code into a binary as well.
 
 ### Task
 
-* Click on the `Build` 
-* Click the `pen` ( `edit`) in upper right corner
-* Add a new stage underneath the first one called "build app"
+* Click on the `Build`.
+* Click the `pen` ( `edit`) in upper right corner.
+* Add a new stage underneath the first one called "build app".
 * Under `settings` (lower right corner ), choose `docker` as the agent, and write `gradle:jdk11` in the image.
-* Add a shell script step which execute this: `ci/build-app.sh`
+* Add a shell script step which execute this: `ci/build-app.sh`.
 * As part of the parallel stage creation the `Say Hello` stage name is also used as the parent stage name. Please rename the parent stage to `Parallel execution` by click the `Say Hello` under the six dots and change the stage name accordingly.
 * Click `Save` and follow same commit and run procedure as above.
 
@@ -75,8 +75,8 @@ After we have done that, we can download it under the tab called "Artifacts" aft
 
 * Add a new step in the `Build app` stage after the Shell script.
 * Choose the type `Archive the artifacts`, and add the path `app/build/libs/` to `Artifacts` field.
-* Click `Save` and follow same commit and run procedure as above
-* Under the build and tab called "Artifacts", you should see an artifact called "app/build/libs/app-0.1-all.jar"
+* Click `Save` and follow same commit and run procedure as above.
+* Under the build and tab called "Artifacts", you should see an artifact called "app/build/libs/app-0.1-all.jar".
   * Note: You can also find the `pipeline.log` here. It is a total log of the whole build including all stages and steps.
 
 If you do see the artifact, then you are done with the exercise.
