@@ -1,10 +1,10 @@
 
 # Editing your pipeline
 
-In the previous exercise, we used the GUI to create our pipeline. Although it is helpful, we also need to be sufficient to edit the script by hand as well.
-In this exercise you will:
+In the previous exercise, we used the GUI to create our pipeline. Although it is helpful and will help you get started, normally we need to edit
+the script by hand to better utilize the pipeline. In this exercise you will:
 
-* Use the replay feature for fast iteration of build steps.
+* Use the "Replay" feature for fast iteration of build steps.
 * Use different agents for building steps
 * Use stash and unstash for sending your data from one agent or step to another
 * Use the built-in test report plugin as a post step to show reports of Unit tests for each build.
@@ -36,6 +36,10 @@ Currently the Replay feature is not available using the Blue Ocean ui, so we use
 * Check the results of changes
 
 Once you are satisfied with the changes, you can use **Replay** to view them again, copy them back to your Pipeline job or `Jenkinsfile`, and then commit them using your usual engineering processes.
+
+> Note: If you created your pipeline through Blue Ocean GUI to your forked repository, it automatically created a `Jenkinsfile` to the root of
+> your repository. This  Jenkinsfile is the code you see when you use the "Replay" functionality. If you do a `git pull` on your terminal, you should see
+> your Jenkinsfile updated if you make changes to your pipeline with the Blue Ocean GUI.
 
 ## Getting help from Jenkins
 
