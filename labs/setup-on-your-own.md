@@ -23,7 +23,7 @@ the port_)
 
 First do the tasks in
 [start jenkins](./labs/00-start-jenkins.md), so
-you have your own fork, and cloned it on your
+you have your own fork, and clone it on your
 instance (machine).
 
 After that do the following to start Jenkins:
