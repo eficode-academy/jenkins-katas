@@ -14,7 +14,17 @@ services:
       - CASC_JENKINS_CONFIG=/var/jcasc/jenkins_config
     secrets:
       - adminpw
-
+  swarm_agent:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile-jenkins-swarm
+    environment: 
+      J_URL: jenkins:8080
+      J_USR: admin
+      J_PSW: adminpassword
+      J_LABELS: swarm linux jdk11
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
 secrets:
   adminpw:
     file: ./secret/admin.txt
