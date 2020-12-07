@@ -19,7 +19,7 @@ docker container from other exercises. (_docker ps
 will help you see if any container is occupying
 the port_)
 
-## actual setup
+## Actual Setup
 
 First do the tasks in
 [start jenkins](./labs/00-start-jenkins.md), so
