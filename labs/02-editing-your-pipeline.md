@@ -120,7 +120,7 @@ Generator:
 It's common to have different types of hardware to
 run your pipeline. Some things can be done on
 inexpensive low performance hardware, while other
-things require extra ram, or a specific piece of
+things require extra RAM, or a specific piece of
 hardware to be run on.
 
 This is achieved by agent labels depicting which
