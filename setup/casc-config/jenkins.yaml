@@ -17,4 +17,4 @@ jenkins:
         - "Overall/Administer:authenticated"
 unclassified:
   location:
-    url: "IPADR:8080"
+    url: "http://IPADR:8080"
