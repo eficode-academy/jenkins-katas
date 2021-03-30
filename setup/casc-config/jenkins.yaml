@@ -15,3 +15,6 @@ jenkins:
       permissions:
         - "Overall/Read:anonymous"
         - "Overall/Administer:authenticated"
+  unclassified:
+     location:
+     url: "IPADR:8080"
