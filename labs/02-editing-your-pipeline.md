@@ -6,6 +6,9 @@ will help you get started, normally we need to
 edit the script by hand to better utilize the
 pipeline. In this exercise you will:
 
+- Sets a build trigger to run every minute, so you
+  do not have to manually activate the build
+  trigger.
 - Use the "Replay" feature for fast iteration of
   build steps.
 - Use different agents for building steps
@@ -14,6 +17,40 @@ pipeline. In this exercise you will:
 - Use the built-in test report plugin as a post
   step to show reports of Unit tests for each
   build.
+- Append a clean up step that always runs, no
+  matter the status of the other stages.
+
+## Set build trigger
+
+When using the BlueOcean UI, what actually happens
+when you click "save and run" is the following:
+
+Jenkins will
+
+- make a commit with the new version of the
+  pipeline
+- push the new commit to the branch you were
+  working on.
+- after a successful push, trigger a build.
+
+When making the changes on you own machine,
+Jenkins does by default not know if there is a new
+commit being pushed to git. Therefore we need to
+add a repository trigger to the job.
+
+### Tasks
+
+- Go in to the old UI of Jenkins
+- Make sure you are at the root level of the
+  jenkins-katas job
+- click configure
+- Scroll down to `Scan Repository Triggers` and
+  select `Periodically if not otherwise run`
+- Under `Interval` choose `1 minute`
+- Click `save`
+
+Now Jenkins will ask github for changes every
+minute, and trigger if there is any.
 
 ## Replay an old pipeline
 
@@ -187,9 +224,21 @@ works before moving to the next.
 
 ## Post steps
 
+As a post step, you can get Jenkins to clean up
+after itself, thereby only leaving the artifact
+stored in last lab.
+
+### Tasks
+
+Just after the `stages` block ends, append the
+following to make Jenkins clean up after itself.
+
 ```Jenkins
 post {
     cleanup {
         deleteDir() /* clean up our workspace */
+    }
 }
 ```
+
+That's it!
