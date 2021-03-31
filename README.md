@@ -4,7 +4,7 @@ Look into the labs folder for exercises
 
 ## Open in google cloud shell
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/praqma-training/jenkins-katas.git)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/eficode-academy/jenkins-katas.git)
 
 Spin up the Jenkins server by running:
 `docker-compose up -d` Jenkins is running on port
