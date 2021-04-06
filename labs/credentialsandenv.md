@@ -61,7 +61,7 @@ steps {
 Couldn't it be nice if Jenkins asked before pushing to Docker hub?
 Try to see what you can implement with the [Input step](https://jenkins.io/doc/pipeline/steps/pipeline-input-step/).
 
-## Authenticate Jenkins to Github, the manual way
+## Extra Extra exercise: Authenticate Jenkins to Github, the manual way
 
 > This guide is for when you cannot use the Blue Ocean way of connecting Jenkins to GitHub through access token. If you are part of a training course, this is not needed unless told otherwise.
 
