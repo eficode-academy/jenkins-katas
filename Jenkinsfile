@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('clone down') {
       steps {
-        stash(excludes: '.git', name 'code')
+        stash(excludes: '.git', name: 'code')
       }
     }
     stage('Parallel execution') {
