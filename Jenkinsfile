@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+    stage('clone down') {
+      steps {
+        stash(excludes: '.git', name 'code')
+      }
+    }
     stage('Parallel execution') {
       parallel {
         stage('Hello world') {
@@ -15,6 +20,9 @@ pipeline {
               image 'gradle:jdk11'
             }
 
+          }
+          options {
+            skipDefaultCheckout()
           }
           steps {
             sh 'ci/build-app.sh'
