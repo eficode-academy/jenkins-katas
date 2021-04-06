@@ -53,7 +53,8 @@ pipeline {
         }
 
       }
-        }
+    }
+
         stage('push app') {
             options {
               skipDefaultCheckout()
