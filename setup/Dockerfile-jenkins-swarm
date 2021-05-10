@@ -6,7 +6,7 @@ ENV J_LABELS swarm
 ENV J_SWARM_VERSION 3.24
 RUN apt update && apt install -y openjdk-11-jdk  apt-transport-https ca-certificates curl software-properties-common wget
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+RUN add-apt-repository "deb https://download.docker.com/linux/ubuntu focal stable"
 RUN apt install -y docker-ce
 
 RUN wget https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/${J_SWARM_VERSION}/swarm-client-${J_SWARM_VERSION}.jar
