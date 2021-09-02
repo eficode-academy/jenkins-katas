@@ -35,7 +35,7 @@ If you're running the stage in a docker container, Jenkins will by default enter
 ```
         stage('Compile on agent') {
             agent {
-                docker "gradle:jdk11"
+                docker "gradle:6-jdk11"
             }
             when {
                 beforeAgent true
