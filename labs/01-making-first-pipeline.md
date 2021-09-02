@@ -44,7 +44,7 @@ We are also going to try to compile our code into a binary as well.
 * Click on the `Build`.
 * Click the `pen` ( `edit`) in upper right corner.
 * Add a new stage underneath the first one called "build app".
-* Under `settings` (lower right corner ), choose `docker` as the agent, and write `gradle:jdk11` in the image.
+* Under `settings` (lower right corner ), choose `docker` as the agent, and write `gradle:6-jdk11` in the image.
 * Add a shell script step which execute this: `ci/build-app.sh`.
 * As part of the parallel stage creation the `Say Hello` stage name is also used as the parent stage name. Please rename the parent stage to `Parallel execution` by click the `Say Hello` under the six dots and change the stage name accordingly.
 * Click `Save` and follow same commit and run procedure as above.
