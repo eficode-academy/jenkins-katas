@@ -3,7 +3,6 @@ services:
   jenkins:
     image: praqma/jenkins-kata-jenkins:latest
     #image: jenkins-server
-    network_mode: host
     user: root
     ports:
       - 8080:8080
