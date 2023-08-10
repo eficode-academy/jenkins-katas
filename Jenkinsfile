@@ -1,9 +1,12 @@
 pipeline {
+  tools {
+        docker 'docker' 
+  }
   agent {
     docker {
       image 'gradle:6-jdk11'
     }
-
+    
   }
   stages {
     stage('Say Hello') {
