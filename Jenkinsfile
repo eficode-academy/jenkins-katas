@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'gradle'
+      image 'gradle:6-jdk11'
     }
 
   }
@@ -22,8 +22,8 @@ pipeline {
 
           }
           steps {
-            sh '''ci/build-app.sh
-'''
+            sh cd ci/
+            sh ./build-app.sh
           }
         }
 
