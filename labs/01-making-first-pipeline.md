@@ -34,6 +34,30 @@ Make a pipeline with the pipeline editor
 * Please observe that it runs the stage and step.
   * Note: the `Check out from version control` step was already added when it was connected to GitHub repository.
 
+
+## Github auth
+
+We need to add the credentials to the repository for GitHub access, otherwise we will end up rate limited really fast:
+
+1. Navigate to your pipeline in Blue Ocean
+2. Click on "Pipeline settings" (gear icon) in the top right corner
+3. Select "Configure" from the dropdown menu
+4. Scroll to the "Branch Sources" section
+5. Find your GitHub repository configuration
+6. For "Credentials", click the dropdown and select "Add" > "Jenkins"
+7. In the new modal:
+   - Kind: Select "Username with password" or "Username with token"
+   - Username: Your GitHub username
+   - Password/Token: Paste your GitHub personal access token
+   - ID: Leave blank or provide a meaningful name like "github-repo-credentials"
+   - Description: "GitHub Repository Access"
+8. Click "Add" to save these credentials
+9. Select your newly created credentials from the dropdown
+10. Click "validate" to check that it works.
+11. if yes, click "Save" at the bottom of the page
+
+This repository-level authentication ensures that Jenkins can properly access this specific repository for checking out code, creating webhooks, and other repository operations.
+
 ## Parallel execution
 
 In this part, we are going to run parallel stages.
@@ -41,6 +65,7 @@ We are also going to try to compile our code into a binary as well.
 
 ### Task
 
+* Navigate to your pipeline in Blue Ocean
 * Click on the `Build`.
 * Click the `pen` ( `edit`) in upper right corner.
 * Add a new stage underneath the first one called "build app".
