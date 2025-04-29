@@ -39,8 +39,7 @@ password.
 In order for Jenkins to access your GitHub repositories, you need to create a personal access token:
 
 1. Log in to your GitHub account
-2. Click on your profile picture in the top-right corner and select "Settings"
-3. Scroll down and click on "Developer settings" in the left sidebar
+2. go to https://github.com/settings/tokens
 4. Click on "Personal access tokens" and then "Tokens (classic)"
 5. Click on "Generate new token" and select "Generate new token (classic)"
 6. Give your token a descriptive name like "Jenkins Access"
