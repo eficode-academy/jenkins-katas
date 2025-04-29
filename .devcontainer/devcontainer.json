@@ -19,7 +19,8 @@
 		"vscode": {
 			// Jenkins extensions
 			"extensions": [
-				"ivory-lab.jenkinsfile-support"
+				"ivory-lab.jenkinsfile-support",
+				"Maarti.jenkins-doc"
 			],
 	}
 	}
