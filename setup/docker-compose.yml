@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   jenkins:
-    image: praqma/jenkins-kata-jenkins:latest
+    image: ghcr.io/eficode-academy/jenkins-katas-server:latest
     #image: jenkins-server
     user: root
     ports:
